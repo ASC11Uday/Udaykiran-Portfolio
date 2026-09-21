@@ -2,11 +2,20 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from .database import Base, engine
+from . import models
+from fastapi import Depends
+from sqlalchemy.orm import Session
+
+from .database import get_db
+
+
 app = FastAPI(
     title="Udaykiran Portfolio API",
     description="Backend API for my personal portfolio",
     version="1.0.0",
 )
+Base.metadata.create_all(bind=engine)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:4200"],
@@ -44,11 +53,19 @@ def about():
     }
 
 @app.post("/api/contact")
-def contact(request: ContactRequest):
-    print("New contact message received:")
-    print(f"Name: {request.name}")
-    print(f"Email: {request.email}")
-    print(f"Message: {request.message}")
+def contact(
+    request: ContactRequest,
+    db: Session = Depends(get_db)
+):
+    new_contact = models.Contact(
+        name=request.name,
+        email=request.email,
+        message=request.message
+    )
+
+    db.add(new_contact)
+    db.commit()
+    db.refresh(new_contact)
 
     return {
         "message": f"Thanks {request.name}, your message has been received."
