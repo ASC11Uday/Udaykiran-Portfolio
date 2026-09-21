@@ -1,0 +1,186 @@
+<section class="contact-section" id="contact">
+
+  <div class="section-container">
+
+    <div class="contact-intro">
+
+      <p class="eyebrow">GET IN TOUCH</p>
+
+      <h2>
+        Let's build something
+        <span>useful together.</span>
+      </h2>
+
+      <p class="contact-description">
+        Have a project, opportunity, or idea you'd like to discuss?
+        Send me a message and I'll get back to you.
+      </p>
+
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-info">
+
+        <div class="contact-item">
+
+          <span class="contact-label">
+            EMAIL
+          </span>
+
+          <a href="mailto:YOUR_EMAIL@example.com">
+            YOUR_EMAIL@example.com
+          </a>
+
+        </div>
+
+        <div class="contact-item">
+
+          <span class="contact-label">
+            LINKEDIN
+          </span>
+
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer">
+            LinkedIn
+          </a>
+
+        </div>
+
+        <div class="contact-item">
+
+          <span class="contact-label">
+            GITHUB
+          </span>
+
+          <a
+            href="https://github.com/"
+            target="_blank"
+            rel="noopener noreferrer">
+            GitHub
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <form
+  class="contact-form"
+  [formGroup]="contactForm"
+  (ngSubmit)="onSubmit()"
+  novalidate
+>
+
+  <div class="form-group">
+
+    <label for="name">Name</label>
+
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      placeholder="Your name"
+    />
+
+    @if (
+      contactForm.controls.name.touched &&
+      contactForm.controls.name.invalid
+    ) {
+      <small class="form-error">
+        @if (contactForm.controls.name.errors?.['required']) {
+          Name is required.
+        }
+
+        @if (contactForm.controls.name.errors?.['minlength']) {
+          Name must be at least 2 characters.
+        }
+      </small>
+    }
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label for="email">Email</label>
+
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      placeholder="you@example.com"
+    />
+
+    @if (
+      contactForm.controls.email.touched &&
+      contactForm.controls.email.invalid
+    ) {
+      <small class="form-error">
+        Please enter a valid email address.
+      </small>
+    }
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label for="message">Message</label>
+
+    <textarea
+      id="message"
+      rows="6"
+      formControlName="message"
+      placeholder="Tell me about your project..."
+    ></textarea>
+
+    @if (
+      contactForm.controls.message.touched &&
+      contactForm.controls.message.invalid
+    ) {
+      <small class="form-error">
+        Message must be at least 10 characters.
+      </small>
+    }
+
+  </div>
+
+
+  <button
+    type="submit"
+    class="submit-button"
+    [disabled]="isSubmitting"
+  >
+
+    {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+
+    @if (!isSubmitting) {
+      <span>↗</span>
+    }
+
+  </button>
+
+
+  @if (successMessage) {
+    <p class="form-success">
+      {{ successMessage }}
+    </p>
+  }
+
+
+  @if (errorMessage) {
+    <p class="form-error">
+      {{ errorMessage }}
+    </p>
+  }
+
+</form>
+
+    </div>
+
+  </div>
+
+</section>
