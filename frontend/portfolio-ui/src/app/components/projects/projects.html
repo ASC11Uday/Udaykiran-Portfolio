@@ -2,6 +2,8 @@
 
   <div class="section-container">
 
+    <!-- Section Heading -->
+
     <div class="section-heading">
 
       <p class="eyebrow">SELECTED WORK</p>
@@ -13,189 +15,132 @@
 
     </div>
 
-    <div class="projects-grid">
 
-      <!-- Project 1 -->
+    <!-- Loading -->
 
-      <article class="project-card featured">
+    @if (isLoading) {
 
-        <div class="project-top">
+      <div class="projects-state">
+        <p>Loading projects...</p>
+      </div>
 
-          <span class="project-number">
-            01
-          </span>
+    }
 
-          <span class="project-type">
-            AI / MACHINE LEARNING
-          </span>
 
-        </div>
+    <!-- Error -->
 
-        <h3>
-          Fake News Prediction
-        </h3>
+    @else if (errorMessage) {
 
-        <p>
-          A machine learning project designed to classify news
-          content and identify potentially misleading information
-          using Python-based ML techniques.
-        </p>
+      <div class="projects-state projects-error">
+        <p>{{ errorMessage }}</p>
+      </div>
 
-        <div class="project-tags">
+    }
 
-          <span>Python</span>
-          <span>Machine Learning</span>
-          <span>NLP</span>
 
-        </div>
+    <!-- Projects -->
 
-        <div class="project-footer">
+    @else {
 
-          <span>AI / ML</span>
+      <div class="projects-grid">
 
-          <span class="arrow">↗</span>
+        @for (project of projects; track project.id) {
 
-        </div>
+          <article
+            class="project-card"
+            [class.featured]="project.featured"
+          >
 
-      </article>
+            <!-- Top -->
 
+            <div class="project-top">
 
-      <!-- Project 2 -->
+              <span class="project-number">
+                {{ project.id.toString().padStart(2, '0') }}
+              </span>
 
-      <article class="project-card">
+              <span class="project-type">
+                {{ project.type }}
+              </span>
 
-        <div class="project-top">
+            </div>
 
-          <span class="project-number">
-            02
-          </span>
 
-          <span class="project-type">
-            FULL STACK
-          </span>
+            <!-- Title -->
 
-        </div>
+            <h3>
+              {{ project.title }}
+            </h3>
 
-        <h3>
-          Tour Management System
-        </h3>
 
-        <p>
-          A full-stack web application for managing tour-related
-          workflows with authentication, backend APIs, and
-          relational data management.
-        </p>
+            <!-- Description -->
 
-        <div class="project-tags">
+            <p>
+              {{ project.description }}
+            </p>
 
-          <span>Angular</span>
-          <span>Spring Boot</span>
-          <span>MySQL</span>
-          <span>JWT</span>
 
-        </div>
+            <!-- Technologies -->
 
-        <div class="project-footer">
+            <div class="project-tags">
 
-          <span>FULL STACK</span>
+              @for (
+                technology of project.technologies;
+                track technology
+              ) {
 
-          <span class="arrow">↗</span>
+                <span>
+                  {{ technology }}
+                </span>
 
-        </div>
+              }
 
-      </article>
+            </div>
 
 
-      <!-- Project 3 -->
+            <!-- Footer -->
 
-      <article class="project-card">
+            <div class="project-footer">
 
-        <div class="project-top">
+              <span>
+                {{ project.category }}
+              </span>
 
-          <span class="project-number">
-            03
-          </span>
 
-          <span class="project-type">
-            COMPUTER VISION
-          </span>
+              @if (project.github && project.github !== '#') {
 
-        </div>
+                <a
+                  [href]="project.github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="arrow"
+                  aria-label="View project on GitHub"
+                >
+                  ↗
+                </a>
 
-        <h3>
-          Glaucoma Detection
-        </h3>
+              }
 
-        <p>
-          A computer vision project exploring automated glaucoma
-          detection using deep learning and object detection
-          techniques.
-        </p>
+              @else {
 
-        <div class="project-tags">
+                <span
+                  class="arrow"
+                  aria-hidden="true"
+                >
+                  ↗
+                </span>
 
-          <span>Python</span>
-          <span>CNN</span>
-          <span>YOLOv8</span>
-          <span>Computer Vision</span>
+              }
 
-        </div>
+            </div>
 
-        <div class="project-footer">
+          </article>
 
-          <span>DEEP LEARNING</span>
+        }
 
-          <span class="arrow">↗</span>
+      </div>
 
-        </div>
-
-      </article>
-
-
-      <!-- Project 4 -->
-
-      <article class="project-card">
-
-        <div class="project-top">
-
-          <span class="project-number">
-            04
-          </span>
-
-          <span class="project-type">
-            PYTHON
-          </span>
-
-        </div>
-
-        <h3>
-          Music Player
-        </h3>
-
-        <p>
-          A Python-based music player application developed to
-          explore desktop application development and media
-          handling.
-        </p>
-
-        <div class="project-tags">
-
-          <span>Python</span>
-          <span>Desktop Application</span>
-
-        </div>
-
-        <div class="project-footer">
-
-          <span>PYTHON</span>
-
-          <span class="arrow">↗</span>
-
-        </div>
-
-      </article>
-
-    </div>
+    }
 
   </div>
 

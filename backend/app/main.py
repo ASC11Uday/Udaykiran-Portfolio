@@ -51,7 +51,73 @@ def about():
             "AI/ML"
         ]
     }
+@app.get("/api/contacts")
+def get_contacts(db: Session = Depends(get_db)):
+    contacts = db.query(models.Contact).all()
 
+    return contacts
+
+@app.get("/api/projects")
+def get_projects():
+    return [
+        {
+            "id": 1,
+            "title": "Fake News Prediction",
+            "description": "A machine learning project designed to classify news content and identify potentially misleading information using Python-based ML techniques.",
+            "type": "AI / MACHINE LEARNING",
+            "category": "AI / ML",
+            "technologies": [
+                "Python",
+                "Machine Learning",
+                "NLP"
+            ],
+            "github": "#",
+            "featured": True
+        },
+        {
+            "id": 2,
+            "title": "Tour Management System",
+            "description": "A full-stack web application for managing tour-related workflows with authentication, backend APIs, and relational data management.",
+            "type": "FULL STACK",
+            "category": "FULL STACK",
+            "technologies": [
+                "Angular",
+                "Spring Boot",
+                "MySQL",
+                "JWT"
+            ],
+            "github": "#",
+            "featured": False
+        },
+        {
+            "id": 3,
+            "title": "Glaucoma Detection",
+            "description": "A computer vision project exploring automated glaucoma detection using deep learning and object detection techniques.",
+            "type": "COMPUTER VISION",
+            "category": "DEEP LEARNING",
+            "technologies": [
+                "Python",
+                "CNN",
+                "YOLOv8",
+                "Computer Vision"
+            ],
+            "github": "#",
+            "featured": False
+        },
+        {
+            "id": 4,
+            "title": "Music Player",
+            "description": "A Python-based music player application developed to explore desktop application development and media handling.",
+            "type": "PYTHON",
+            "category": "PYTHON",
+            "technologies": [
+                "Python",
+                "Desktop Application"
+            ],
+            "github": "#",
+            "featured": False
+        }
+    ]
 @app.post("/api/contact")
 def contact(
     request: ContactRequest,
