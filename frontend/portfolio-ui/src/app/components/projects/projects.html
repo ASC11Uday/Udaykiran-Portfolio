@@ -18,10 +18,12 @@
 
     <!-- Loading -->
 
-    @if (isLoading) {
+    @if (isLoading()) {
 
       <div class="projects-state">
+
         <p>Loading projects...</p>
+
       </div>
 
     }
@@ -29,10 +31,32 @@
 
     <!-- Error -->
 
-    @else if (errorMessage) {
+    @else if (errorMessage()) {
 
       <div class="projects-state projects-error">
-        <p>{{ errorMessage }}</p>
+
+        <p>{{ errorMessage() }}</p>
+
+        <button
+          type="button"
+          (click)="loadProjects()"
+        >
+          Try Again
+        </button>
+
+      </div>
+
+    }
+
+
+    <!-- Empty -->
+
+    @else if (projects().length === 0) {
+
+      <div class="projects-state">
+
+        <p>No projects found.</p>
+
       </div>
 
     }
@@ -44,43 +68,51 @@
 
       <div class="projects-grid">
 
-        @for (project of projects; track project.id) {
+        @for (project of projects(); track project.id) {
 
           <article
             class="project-card"
             [class.featured]="project.featured"
           >
 
-            <!-- Top -->
+            <!-- Project Header -->
 
             <div class="project-top">
 
               <span class="project-number">
+
                 {{ project.id.toString().padStart(2, '0') }}
+
               </span>
 
               <span class="project-type">
+
                 {{ project.type }}
+
               </span>
 
             </div>
 
 
-            <!-- Title -->
+            <!-- Project Title -->
 
             <h3>
+
               {{ project.title }}
+
             </h3>
 
 
-            <!-- Description -->
+            <!-- Project Description -->
 
             <p>
+
               {{ project.description }}
+
             </p>
 
 
-            <!-- Technologies -->
+            <!-- Technology Tags -->
 
             <div class="project-tags">
 
@@ -90,7 +122,9 @@
               ) {
 
                 <span>
+
                   {{ technology }}
+
                 </span>
 
               }
@@ -103,11 +137,16 @@
             <div class="project-footer">
 
               <span>
+
                 {{ project.category }}
+
               </span>
 
 
-              @if (project.github && project.github !== '#') {
+              @if (
+                project.github &&
+                project.github !== '#'
+              ) {
 
                 <a
                   [href]="project.github"
@@ -116,7 +155,9 @@
                   class="arrow"
                   aria-label="View project on GitHub"
                 >
+
                   ↗
+
                 </a>
 
               }
@@ -127,7 +168,9 @@
                   class="arrow"
                   aria-hidden="true"
                 >
+
                   ↗
+
                 </span>
 
               }

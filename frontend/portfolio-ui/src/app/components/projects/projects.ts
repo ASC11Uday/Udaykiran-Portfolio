@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 
 import {
   Project,
@@ -15,10 +15,11 @@ export class Projects implements OnInit {
 
   private projectService = inject(ProjectService);
 
-  projects: Project[] = [];
+  projects = signal<Project[]>([]);
 
-  isLoading = true;
-  errorMessage = '';
+  isLoading = signal(true);
+
+  errorMessage = signal('');
 
   ngOnInit(): void {
     this.loadProjects();
@@ -26,28 +27,33 @@ export class Projects implements OnInit {
 
   loadProjects(): void {
 
-  console.log('Loading projects...');
+    this.isLoading.set(true);
+    this.errorMessage.set('');
 
-  this.projectService.getProjects().subscribe({
+    this.projectService.getProjects().subscribe({
 
-    next: (data) => {
+      next: (data) => {
 
-      console.log('Projects received:', data);
+        console.log('Projects received:', data);
 
-      this.projects = data;
-      this.isLoading = false;
-    },
+        this.projects.set(data);
 
-    error: (error) => {
+        this.isLoading.set(false);
 
-      console.error('Projects API error:', error);
+      },
 
-      this.errorMessage =
-        'Unable to load projects right now.';
+      error: (error) => {
 
-      this.isLoading = false;
-    }
+        console.error('Projects API error:', error);
 
-  });
-}
+        this.isLoading.set(false);
+
+        this.errorMessage.set(
+          'Unable to load projects. Please try again.'
+        );
+
+      }
+
+    });
+  }
 }
