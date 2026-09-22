@@ -6,17 +6,20 @@
   color: #ffffff;
 }
 
+
 .section-container {
   max-width: 1200px;
 
   margin: 0 auto;
 }
 
+
 .section-heading {
   max-width: 800px;
 
   margin-bottom: 90px;
 }
+
 
 .eyebrow {
   margin-bottom: 20px;
@@ -30,6 +33,7 @@
   letter-spacing: 3px;
 }
 
+
 h2 {
   margin: 0;
 
@@ -40,9 +44,11 @@ h2 {
   letter-spacing: -2px;
 }
 
+
 h2 span {
   color: #777777;
 }
+
 
 .experience-list {
   position: relative;
@@ -51,6 +57,7 @@ h2 span {
 
   margin: 0 auto;
 }
+
 
 .experience-list::before {
   content: '';
@@ -67,6 +74,7 @@ h2 span {
   background: #292929;
 }
 
+
 .experience-item {
   position: relative;
 
@@ -81,9 +89,11 @@ h2 span {
   margin-bottom: 20px;
 }
 
+
 .experience-item:last-child {
   padding-bottom: 0;
 }
+
 
 .experience-meta {
   display: flex;
@@ -96,6 +106,7 @@ h2 span {
 
   z-index: 1;
 }
+
 
 .experience-number {
   display: flex;
@@ -120,6 +131,7 @@ h2 span {
   font-size: 12px;
 }
 
+
 .experience-period {
   color: #666666;
 
@@ -128,9 +140,11 @@ h2 span {
   letter-spacing: 1px;
 }
 
+
 .experience-content {
   padding: 5px 0;
 }
+
 
 .experience-content h3 {
   margin: 0;
@@ -138,7 +152,10 @@ h2 span {
   font-size: 28px;
 
   font-weight: 600;
+
+  line-height: 1.2;
 }
+
 
 .experience-content h4 {
   margin: 8px 0 22px;
@@ -149,6 +166,7 @@ h2 span {
 
   font-weight: 500;
 }
+
 
 .experience-content > p {
   max-width: 650px;
@@ -162,6 +180,7 @@ h2 span {
   line-height: 1.8;
 }
 
+
 .experience-tags {
   display: flex;
 
@@ -171,6 +190,7 @@ h2 span {
 
   margin-top: 25px;
 }
+
 
 .experience-tags span {
   padding: 7px 12px;
@@ -186,32 +206,185 @@ h2 span {
   font-size: 12px;
 }
 
+
+/* Tablet */
+
+@media (max-width: 900px) {
+
+  .experience-section {
+    padding: 110px 30px;
+  }
+
+
+  .section-heading {
+    margin-bottom: 65px;
+  }
+
+
+  .experience-list {
+    max-width: 800px;
+  }
+
+
+  .experience-item {
+    grid-template-columns: 150px 1fr;
+
+    gap: 40px;
+
+    padding-bottom: 70px;
+  }
+
+
+  .experience-list::before {
+    left: 75px;
+  }
+
+
+  .experience-content h3 {
+    font-size: 25px;
+  }
+
+}
+
+
+/* Mobile */
+
 @media (max-width: 700px) {
 
   .experience-section {
-    padding: 100px 20px;
+    padding: 90px 20px;
   }
+
+
+  .section-heading {
+    margin-bottom: 50px;
+  }
+
+
+  .eyebrow {
+    margin-bottom: 16px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+  }
+
+
+  h2 {
+    font-size: clamp(38px, 11vw, 50px);
+
+    line-height: 1.06;
+
+    letter-spacing: -1.5px;
+  }
+
 
   .experience-list::before {
     display: none;
   }
 
+
   .experience-item {
     grid-template-columns: 1fr;
 
-    gap: 20px;
+    gap: 18px;
 
-    padding-bottom: 60px;
+    padding-bottom: 50px;
+
+    margin-bottom: 10px;
   }
+
+
+  .experience-item:last-child {
+    padding-bottom: 0;
+  }
+
 
   .experience-meta {
     flex-direction: row;
 
     align-items: center;
+
+    gap: 14px;
   }
 
+
+  .experience-number {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+  }
+
+
+  .experience-period {
+    font-size: 11px;
+
+    letter-spacing: 0.8px;
+  }
+
+
+  .experience-content {
+    padding: 0;
+  }
+
+
   .experience-content h3 {
-    font-size: 24px;
+    font-size: 23px;
+
+    line-height: 1.25;
+  }
+
+
+  .experience-content h4 {
+    margin-top: 7px;
+
+    margin-bottom: 18px;
+
+    font-size: 14px;
+  }
+
+
+  .experience-content > p {
+    font-size: 15px;
+
+    line-height: 1.7;
+  }
+
+
+  .experience-tags {
+    gap: 7px;
+
+    margin-top: 20px;
+  }
+
+
+  .experience-tags span {
+    padding: 6px 10px;
+
+    font-size: 11px;
+  }
+
+}
+
+
+/* Very small phones */
+
+@media (max-width: 380px) {
+
+  .experience-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+
+  h2 {
+    font-size: 36px;
+  }
+
+
+  .experience-content h3 {
+    font-size: 21px;
   }
 
 }

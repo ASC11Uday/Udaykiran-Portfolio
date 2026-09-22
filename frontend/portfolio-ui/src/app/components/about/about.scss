@@ -6,17 +6,20 @@
   color: #ffffff;
 }
 
+
 .section-container {
   max-width: 1200px;
 
   margin: 0 auto;
 }
 
+
 .section-heading {
   max-width: 850px;
 
   margin-bottom: 80px;
 }
+
 
 .eyebrow {
   margin-bottom: 20px;
@@ -30,6 +33,7 @@
   letter-spacing: 3px;
 }
 
+
 h2 {
   margin: 0;
 
@@ -40,9 +44,11 @@ h2 {
   letter-spacing: -2px;
 }
 
+
 h2 span {
   color: #777777;
 }
+
 
 .about-grid {
   display: grid;
@@ -54,9 +60,11 @@ h2 span {
   align-items: start;
 }
 
+
 .about-text {
   max-width: 600px;
 }
+
 
 .about-text p {
   margin: 0 0 25px;
@@ -68,6 +76,7 @@ h2 span {
   line-height: 1.8;
 }
 
+
 .about-highlights {
   display: flex;
 
@@ -75,6 +84,7 @@ h2 span {
 
   gap: 18px;
 }
+
 
 .highlight-card {
   display: grid;
@@ -96,11 +106,13 @@ h2 span {
     border-color 0.2s ease;
 }
 
+
 .highlight-card:hover {
   transform: translateX(5px);
 
   border-color: #444444;
 }
+
 
 .highlight-number {
   color: #666666;
@@ -110,11 +122,13 @@ h2 span {
   font-size: 13px;
 }
 
+
 .highlight-card h3 {
   margin: 0 0 8px;
 
   font-size: 17px;
 }
+
 
 .highlight-card p {
   margin: 0;
@@ -126,16 +140,135 @@ h2 span {
   line-height: 1.6;
 }
 
-@media (max-width: 800px) {
+
+/* Tablet */
+
+@media (max-width: 900px) {
 
   .about-section {
-    padding: 100px 20px;
+    padding: 110px 30px;
   }
+
+
+  .section-heading {
+    margin-bottom: 60px;
+  }
+
 
   .about-grid {
     grid-template-columns: 1fr;
 
-    gap: 50px;
+    gap: 55px;
+  }
+
+
+  .about-text {
+    max-width: 700px;
+  }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .about-section {
+    padding: 90px 20px;
+  }
+
+
+  .section-heading {
+    margin-bottom: 45px;
+  }
+
+
+  .eyebrow {
+    margin-bottom: 16px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+  }
+
+
+  h2 {
+    font-size: clamp(38px, 11vw, 50px);
+
+    line-height: 1.06;
+
+    letter-spacing: -1.5px;
+  }
+
+
+  .about-grid {
+    gap: 40px;
+  }
+
+
+  .about-text p {
+    margin-bottom: 20px;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+  }
+
+
+  .about-highlights {
+    gap: 14px;
+  }
+
+
+  .highlight-card {
+    grid-template-columns: 38px 1fr;
+
+    gap: 14px;
+
+    padding: 20px;
+  }
+
+
+  .highlight-card h3 {
+    font-size: 16px;
+  }
+
+
+  .highlight-card p {
+    font-size: 13px;
+
+    line-height: 1.55;
+  }
+
+
+  .highlight-card:hover {
+    transform: translateY(-2px);
+  }
+
+}
+
+
+/* Very small phones */
+
+@media (max-width: 380px) {
+
+  .about-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+
+  h2 {
+    font-size: 36px;
+  }
+
+
+  .highlight-card {
+    grid-template-columns: 32px 1fr;
+
+    gap: 12px;
+
+    padding: 17px;
   }
 
 }

@@ -13,96 +13,135 @@
 
     </div>
 
-    <div class="experience-list">
 
-      <article class="experience-item">
+    @if (isLoading()) {
 
-        <div class="experience-meta">
+      <div class="experience-list">
 
-          <span class="experience-number">
-            01
-          </span>
+        <div class="experience-item">
 
-          <span class="experience-period">
-            2024 — Present
-          </span>
+          <div class="experience-content">
 
-        </div>
-
-        <div class="experience-content">
-
-          <h3>
-            Senior Associate Engineer
-          </h3>
-
-          <h4>
-            Ascendion Engineering Pvt. Ltd.
-          </h4>
-
-          <p>
-            Working across full-stack development, software testing,
-            automation, and AI-driven engineering workflows.
-          </p>
-
-          <div class="experience-tags">
-
-            <span>Angular</span>
-            <span>Spring Boot</span>
-            <span>Python</span>
-            <span>PyTest</span>
-            <span>Automation</span>
-            <span>AI</span>
+            <p>Loading experience...</p>
 
           </div>
 
         </div>
 
-      </article>
+      </div>
+
+    }
 
 
-      <article class="experience-item">
+    @else if (errorMessage()) {
 
-        <div class="experience-meta">
+      <div class="experience-list">
 
-          <span class="experience-number">
-            02
-          </span>
+        <div class="experience-item">
 
-          <span class="experience-period">
-            2022
-          </span>
+          <div class="experience-content">
 
-        </div>
+            <p>{{ errorMessage() }}</p>
 
-        <div class="experience-content">
-
-          <h3>
-            Machine Learning Intern
-          </h3>
-
-          <h4>
-            YBI Foundation
-          </h4>
-
-          <p>
-            Worked on machine learning concepts and practical
-            Python-based projects while developing hands-on
-            experience with data and ML workflows.
-          </p>
-
-          <div class="experience-tags">
-
-            <span>Python</span>
-            <span>Machine Learning</span>
-            <span>Data Analysis</span>
+            <button
+              type="button"
+              (click)="loadExperiences()"
+            >
+              Try Again
+            </button>
 
           </div>
 
         </div>
 
-      </article>
+      </div>
 
-    </div>
+    }
+
+
+    @else if (experiences().length === 0) {
+
+      <div class="experience-list">
+
+        <div class="experience-item">
+
+          <div class="experience-content">
+
+            <p>No experience information found.</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+
+    @else {
+
+      <div class="experience-list">
+
+        @for (
+          experience of experiences();
+          track experience.id;
+          let i = $index
+        ) {
+
+          <article class="experience-item">
+
+            <div class="experience-meta">
+
+              <span class="experience-number">
+                {{ (i + 1).toString().padStart(2, '0') }}
+              </span>
+
+              <span class="experience-period">
+                {{ experience.period }}
+              </span>
+
+            </div>
+
+
+            <div class="experience-content">
+
+              <h3>
+                {{ experience.role }}
+              </h3>
+
+              <h4>
+                {{ experience.company }}
+              </h4>
+
+              <p>
+                {{ experience.description }}
+              </p>
+
+
+              <div class="experience-tags">
+
+                @for (
+                  technology of experience.technologies;
+                  track technology
+                ) {
+
+                  <span>
+                    {{ technology }}
+                  </span>
+
+                }
+
+              </div>
+
+            </div>
+
+          </article>
+
+        }
+
+      </div>
+
+    }
 
   </div>
 

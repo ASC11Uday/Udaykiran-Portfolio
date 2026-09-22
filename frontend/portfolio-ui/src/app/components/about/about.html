@@ -6,82 +6,128 @@
 
       <p class="eyebrow">ABOUT ME</p>
 
-      <h2>
-        Engineering solutions across
-        <span>software, automation & AI.</span>
-      </h2>
+      @if (isLoading()) {
+
+        <h2>
+          Engineering solutions across
+          <span>software, automation & AI.</span>
+        </h2>
+
+      } @else if (about()) {
+
+        <h2>
+          Engineering solutions across
+          <span>software, automation & AI.</span>
+        </h2>
+
+      }
 
     </div>
 
-    <div class="about-grid">
+    @if (isLoading()) {
 
-      <div class="about-text">
+      <div class="about-grid">
 
-        <p>
-          I'm Udaykiran, a Senior Associate Engineer focused on
-          building full-stack applications, automation solutions,
-          and AI-driven workflows.
-        </p>
-
-        <p>
-          My development experience spans Angular, TypeScript,
-          Spring Boot, Python, and MySQL, while my testing and
-          automation work includes Selenium, PyTest, and Windows
-          application automation.
-        </p>
-
-        <p>
-          I'm also exploring agentic AI systems and intelligent
-          automation workflows that can improve how software is
-          tested, validated, and maintained.
-        </p>
-
-      </div>
-
-      <div class="about-highlights">
-
-        <div class="highlight-card">
-
-          <span class="highlight-number">01</span>
-
-          <div>
-            <h3>Full Stack</h3>
-            <p>
-              Angular, TypeScript, Spring Boot and MySQL.
-            </p>
-          </div>
-
-        </div>
-
-        <div class="highlight-card">
-
-          <span class="highlight-number">02</span>
-
-          <div>
-            <h3>Automation</h3>
-            <p>
-              Selenium, PyTest and Windows application automation.
-            </p>
-          </div>
-
-        </div>
-
-        <div class="highlight-card">
-
-          <span class="highlight-number">03</span>
-
-          <div>
-            <h3>AI & Agentic Workflows</h3>
-            <p>
-              AI/ML projects and intelligent automation workflows.
-            </p>
-          </div>
-
+        <div class="about-text">
+          <p>Loading about information...</p>
         </div>
 
       </div>
 
-    </div>
+    } @else if (errorMessage()) {
+
+      <div class="about-grid">
+
+        <div class="about-text">
+          <p>{{ errorMessage() }}</p>
+
+          <button
+            type="button"
+            (click)="loadAbout()"
+          >
+            Try Again
+          </button>
+        </div>
+
+      </div>
+
+    } @else if (about()) {
+
+      <div class="about-grid">
+
+        <div class="about-text">
+
+          <p>
+            I'm {{ about()!.name }}, a
+            {{ about()!.role }} focused on
+            building full-stack applications,
+            automation solutions, and AI-driven
+            workflows.
+          </p>
+
+          <p>
+            My development experience spans
+            {{ about()!.skills.join(', ') }}.
+          </p>
+
+          <p>
+            I'm also exploring agentic AI systems
+            and intelligent automation workflows
+            that can improve how software is
+            tested, validated, and maintained.
+          </p>
+
+        </div>
+
+        <div class="about-highlights">
+
+          <div class="highlight-card">
+
+            <span class="highlight-number">01</span>
+
+            <div>
+              <h3>Full Stack</h3>
+
+              <p>
+                Angular, TypeScript, Spring Boot and MySQL.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="highlight-card">
+
+            <span class="highlight-number">02</span>
+
+            <div>
+              <h3>Automation</h3>
+
+              <p>
+                Selenium, PyTest and Windows application automation.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="highlight-card">
+
+            <span class="highlight-number">03</span>
+
+            <div>
+              <h3>AI & Agentic Workflows</h3>
+
+              <p>
+                AI/ML projects and intelligent automation workflows.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    }
 
   </div>
 

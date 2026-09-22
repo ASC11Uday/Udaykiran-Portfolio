@@ -13,136 +13,139 @@
 
     </div>
 
-    <div class="skills-grid">
 
-      <!-- Development -->
+    @if (isLoading()) {
 
-      <article class="skill-group">
+      <div class="skills-grid">
 
-        <div class="skill-header">
-          <span class="skill-number">01</span>
+        <article class="skill-group">
 
-          <h3>Development</h3>
-        </div>
+          <div class="skill-header">
 
-        <p>
-          Building responsive web applications and backend
-          services using modern development frameworks.
-        </p>
+            <span class="skill-number">
+              01
+            </span>
 
-        <div class="skill-list">
+            <h3>Loading skills...</h3>
 
-          <span>Angular</span>
-          <span>TypeScript</span>
-          <span>JavaScript</span>
-          <span>HTML</span>
-          <span>CSS / SCSS</span>
-          <span>Spring Boot</span>
-          <span>Java</span>
-          <span>Python</span>
-          <span>MySQL</span>
-          <span>MongoDB</span>
+          </div>
 
-        </div>
+        </article>
 
-      </article>
+      </div>
+
+    }
 
 
-      <!-- Automation -->
+    @else if (errorMessage()) {
 
-      <article class="skill-group">
+      <div class="skills-grid">
 
-        <div class="skill-header">
-          <span class="skill-number">02</span>
+        <article class="skill-group">
 
-          <h3>Automation & Testing</h3>
-        </div>
+          <div class="skill-header">
 
-        <p>
-          Designing automated test workflows for web and
-          Windows applications with a focus on reliability
-          and maintainability.
-        </p>
+            <span class="skill-number">
+              !
+            </span>
 
-        <div class="skill-list">
+            <h3>Unable to load skills</h3>
 
-          <span>PyTest</span>
-          <span>Selenium</span>
-          <span>Manual Testing</span>
-          <span>Windows Automation</span>
-          <span>JIRA</span>
-          <span>TestRail</span>
-          <span>Xray</span>
-          <span>Zephyr</span>
-          <span>Postman</span>
+          </div>
 
-        </div>
+          <p>
+            {{ errorMessage() }}
+          </p>
 
-      </article>
+          <button
+            type="button"
+            (click)="loadSkills()"
+          >
+            Try Again
+          </button>
 
+        </article>
 
-      <!-- AI -->
+      </div>
 
-      <article class="skill-group">
-
-        <div class="skill-header">
-          <span class="skill-number">03</span>
-
-          <h3>AI & Intelligent Automation</h3>
-        </div>
-
-        <p>
-          Exploring machine learning, computer vision and
-          agent-based workflows for intelligent software
-          automation.
-        </p>
-
-        <div class="skill-list">
-
-          <span>Machine Learning</span>
-          <span>Computer Vision</span>
-          <span>Generative AI</span>
-          <span>Agentic AI</span>
-          <span>AI Agents</span>
-          <span>OCR</span>
-          <span>YOLOv8</span>
-          <span>CNN</span>
-
-        </div>
-
-      </article>
+    }
 
 
-      <!-- Tools -->
+    @else if (skillGroups().length === 0) {
 
-      <article class="skill-group">
+      <div class="skills-grid">
 
-        <div class="skill-header">
-          <span class="skill-number">04</span>
+        <article class="skill-group">
 
-          <h3>Tools & Workflow</h3>
-        </div>
+          <div class="skill-header">
 
-        <p>
-          Development and collaboration tools used across
-          software engineering and testing workflows.
-        </p>
+            <span class="skill-number">
+              00
+            </span>
 
-        <div class="skill-list">
+            <h3>No skills found</h3>
 
-          <span>Git</span>
-          <span>GitHub</span>
-          <span>GitHub Desktop</span>
-          <span>VS Code</span>
-          <span>IntelliJ IDEA</span>
-          <span>JIRA</span>
-          <span>Postman</span>
+          </div>
 
-        </div>
+        </article>
 
-      </article>
+      </div>
 
-    </div>
+    }
+
+
+    @else {
+
+      <div class="skills-grid">
+
+        @for (
+          group of skillGroups();
+          track group.id;
+          let i = $index
+        ) {
+
+          <article class="skill-group">
+
+            <div class="skill-header">
+
+              <span class="skill-number">
+                {{ (i + 1).toString().padStart(2, '0') }}
+              </span>
+
+              <h3>
+                {{ group.title }}
+              </h3>
+
+            </div>
+
+
+            <p>
+              {{ group.description }}
+            </p>
+
+
+            <div class="skill-list">
+
+              @for (
+                skill of group.skills;
+                track skill
+              ) {
+
+                <span>
+                  {{ skill }}
+                </span>
+
+              }
+
+            </div>
+
+          </article>
+
+        }
+
+      </div>
+
+    }
 
   </div>
 

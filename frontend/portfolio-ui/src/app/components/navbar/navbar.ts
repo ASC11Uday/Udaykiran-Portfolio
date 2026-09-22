@@ -1,9 +1,21 @@
 import { Component } from '@angular/core';
 
 @Component({
-  imports: [],
   selector: 'app-navbar',
-  styleUrl: './navbar.scss',
+  imports: [],
   templateUrl: './navbar.html',
+  styleUrl: './navbar.scss'
 })
-export class Navbar {}
+export class Navbar {
+
+  isMenuOpen = false;
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
+
+}

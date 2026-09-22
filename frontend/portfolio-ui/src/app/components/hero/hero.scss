@@ -22,6 +22,7 @@
   color: #ffffff;
 }
 
+
 .hero-container {
   width: 100%;
   max-width: 1200px;
@@ -29,6 +30,7 @@
   margin: 0 auto;
 
   display: grid;
+
   grid-template-columns: 1.2fr 0.8fr;
 
   gap: 80px;
@@ -36,9 +38,11 @@
   align-items: center;
 }
 
+
 .hero-content {
   max-width: 720px;
 }
+
 
 .eyebrow {
   margin-bottom: 24px;
@@ -51,6 +55,7 @@
   letter-spacing: 3px;
 }
 
+
 h1 {
   margin: 0;
 
@@ -62,6 +67,7 @@ h1 {
 
   font-weight: 700;
 }
+
 
 h1 span {
   display: block;
@@ -78,6 +84,7 @@ h1 span {
   color: transparent;
 }
 
+
 .hero-description {
   max-width: 650px;
 
@@ -90,6 +97,7 @@ h1 span {
   line-height: 1.7;
 }
 
+
 .hero-actions {
   display: flex;
 
@@ -97,6 +105,7 @@ h1 span {
 
   margin-top: 35px;
 }
+
 
 .primary-button,
 .secondary-button {
@@ -115,11 +124,13 @@ h1 span {
     background 0.2s ease;
 }
 
+
 .primary-button {
   background: #ffffff;
 
   color: #080808;
 }
+
 
 .secondary-button {
   border: 1px solid #333333;
@@ -127,14 +138,17 @@ h1 span {
   color: #ffffff;
 }
 
+
 .primary-button:hover,
 .secondary-button:hover {
   transform: translateY(-3px);
 }
 
+
 .secondary-button:hover {
   background: #151515;
 }
+
 
 .hero-tech {
   display: flex;
@@ -145,6 +159,7 @@ h1 span {
 
   margin-top: 45px;
 }
+
 
 .hero-tech span {
   padding: 8px 13px;
@@ -160,14 +175,19 @@ h1 span {
   background: rgba(255, 255, 255, 0.02);
 }
 
+
 .hero-visual {
   display: flex;
 
   justify-content: center;
+
+  width: 100%;
 }
+
 
 .code-card {
   width: 100%;
+
   max-width: 430px;
 
   background: #101010;
@@ -186,9 +206,11 @@ h1 span {
   transition: transform 0.3s ease;
 }
 
+
 .code-card:hover {
   transform: rotate(0deg) translateY(-5px);
 }
+
 
 .code-header {
   display: flex;
@@ -200,14 +222,17 @@ h1 span {
   border-bottom: 1px solid #242424;
 }
 
+
 .code-header span {
   width: 10px;
+
   height: 10px;
 
   border-radius: 50%;
 
   background: #444444;
 }
+
 
 .code-content {
   padding: 30px;
@@ -219,70 +244,220 @@ h1 span {
   line-height: 2;
 }
 
+
 .code-content p {
   margin: 0;
 
   color: #bdbdbd;
 }
 
+
 .keyword {
   color: #b49cff;
 }
+
 
 .string {
   color: #8fd694;
 }
 
+
 .indent {
   padding-left: 20px;
 }
+
 
 .indent-2 {
   padding-left: 40px;
 }
 
-@media (max-width: 850px) {
+
+/* Tablet */
+
+@media (max-width: 1000px) {
 
   .hero-container {
-    grid-template-columns: 1fr;
-
     gap: 50px;
   }
+
+  h1 {
+    font-size: clamp(48px, 7vw, 68px);
+  }
+
+}
+
+
+/* Tablet / Small laptop */
+
+@media (max-width: 850px) {
 
   .hero {
     padding-top: 130px;
   }
 
+  .hero-container {
+    grid-template-columns: 1fr;
+
+    gap: 60px;
+  }
+
+  .hero-content {
+    max-width: 760px;
+  }
+
   .hero-visual {
-    justify-content: flex-start;
+    justify-content: center;
+  }
+
+  .code-card {
+    max-width: 500px;
   }
 
 }
 
+
+/* Mobile */
+
 @media (max-width: 600px) {
 
   .hero {
-    padding-left: 20px;
-    padding-right: 20px;
+    min-height: auto;
+
+    padding:
+      120px
+      20px
+      70px;
   }
+
+
+  .hero-container {
+    gap: 45px;
+  }
+
+
+  .eyebrow {
+    margin-bottom: 18px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+  }
+
 
   h1 {
-    font-size: 48px;
+    font-size: clamp(42px, 12vw, 52px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
   }
 
+
   .hero-description {
+    margin-top: 24px;
+
     font-size: 16px;
+
+    line-height: 1.65;
   }
+
 
   .hero-actions {
     flex-direction: column;
 
     align-items: stretch;
+
+    gap: 12px;
+
+    margin-top: 30px;
   }
+
 
   .primary-button,
   .secondary-button {
+    width: 100%;
+
+    box-sizing: border-box;
+
     text-align: center;
+  }
+
+
+  .hero-tech {
+    gap: 8px;
+
+    margin-top: 32px;
+  }
+
+
+  .hero-tech span {
+    padding: 7px 11px;
+
+    font-size: 11px;
+  }
+
+
+  .hero-visual {
+    width: 100%;
+  }
+
+
+  .code-card {
+    max-width: 100%;
+
+    transform: none;
+
+    border-radius: 12px;
+  }
+
+
+  .code-card:hover {
+    transform: translateY(-3px);
+  }
+
+
+  .code-content {
+    padding: 22px;
+
+    font-size: 12px;
+
+    line-height: 1.9;
+
+    overflow-x: auto;
+  }
+
+
+  .indent {
+    padding-left: 12px;
+  }
+
+
+  .indent-2 {
+    padding-left: 24px;
+  }
+
+}
+
+
+/* Very small phones */
+
+@media (max-width: 380px) {
+
+  .hero {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+
+  h1 {
+    font-size: 40px;
+  }
+
+
+  .code-content {
+    padding: 18px;
+
+    font-size: 11px;
   }
 
 }
