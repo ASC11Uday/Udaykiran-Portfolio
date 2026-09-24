@@ -1,166 +1,124 @@
 .contact-section {
   padding: 140px 30px;
-
   background: #0a0a0a;
-
   color: #ffffff;
 }
 
 
+/* =========================================
+   SECTION CONTAINER
+========================================= */
+
 .section-container {
   max-width: 1200px;
-
   margin: 0 auto;
 }
 
 
-/* ========================================= */
-/* INTRO                                     */
-/* ========================================= */
+/* =========================================
+   INTRO
+========================================= */
 
 .contact-intro {
   max-width: 850px;
-
   margin-bottom: 80px;
 }
 
-
 .eyebrow {
   margin-bottom: 20px;
-
   color: #777777;
-
   font-size: 12px;
-
   font-weight: 600;
-
   letter-spacing: 3px;
 }
 
-
 .contact-intro h2 {
   margin: 0;
-
   font-size: clamp(40px, 5vw, 68px);
-
   line-height: 1.1;
-
   letter-spacing: -2px;
 }
-
 
 .contact-intro h2 span {
   color: #777777;
 }
 
-
 .contact-description {
   max-width: 600px;
-
   margin-top: 25px;
-
   color: #888888;
-
   font-size: 16px;
-
   line-height: 1.8;
 }
 
 
-/* ========================================= */
-/* CONTACT GRID                              */
-/* ========================================= */
+/* =========================================
+   CONTACT GRID
+========================================= */
 
 .contact-grid {
   display: grid;
-
-  grid-template-columns:
-    0.7fr 1.3fr;
-
+  grid-template-columns: 0.7fr 1.3fr;
   gap: 100px;
-
   align-items: start;
 }
 
 
-/* ========================================= */
-/* CONTACT INFO                              */
-/* ========================================= */
+/* =========================================
+   CONTACT INFO
+========================================= */
 
 .contact-info {
   display: flex;
-
   flex-direction: column;
-
   gap: 35px;
 }
 
-
 .contact-item {
   display: flex;
-
   flex-direction: column;
-
   gap: 8px;
 }
 
-
 .contact-label {
   color: #555555;
-
   font-size: 10px;
-
   font-weight: 600;
-
   letter-spacing: 2px;
 }
 
-
 .contact-item a {
   width: fit-content;
-
   color: #dddddd;
-
   text-decoration: none;
-
   font-size: 16px;
-
   transition:
     color 0.25s ease,
     text-shadow 0.25s ease;
 }
 
-
 .contact-item a:hover {
   color: #72bd7d;
-
   text-shadow:
     0 0 10px rgba(80, 180, 95, 0.18);
 }
 
 
-/* ========================================= */
-/* 3D FLIP CARD                              */
-/* ========================================= */
+/* =========================================
+   3D FLIP CARD
+========================================= */
 
 .contact-card {
   position: relative;
-
   width: 100%;
-
   perspective: 1200px;
 }
 
-
 .contact-card-inner {
   position: relative;
-
   width: 100%;
-
   min-height: 530px;
-
   transform-style: preserve-3d;
-
   transition:
     transform 0.8s
     cubic-bezier(
@@ -181,23 +139,18 @@
 }
 
 
-/* ========================================= */
-/* CARD FACES                                */
-/* ========================================= */
+/* =========================================
+   CARD FACES
+========================================= */
 
 .contact-card-face {
   position: absolute;
-
   inset: 0;
-
   width: 100%;
-
   min-height: 530px;
-
   box-sizing: border-box;
 
   border: 1px solid #252525;
-
   border-radius: 16px;
 
   background: #101010;
@@ -205,7 +158,6 @@
   overflow: hidden;
 
   backface-visibility: hidden;
-
   -webkit-backface-visibility: hidden;
 }
 
@@ -222,9 +174,7 @@
 
 .contact-card-back {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   padding: 40px;
@@ -234,21 +184,19 @@
 }
 
 
-/* ========================================= */
-/* FORM                                      */
-/* ========================================= */
+/* =========================================
+   FORM
+========================================= */
 
 .contact-form {
   position: relative;
 
   display: flex;
-
   flex-direction: column;
 
   gap: 20px;
 
   height: 100%;
-
   min-height: 530px;
 
   padding: 32px;
@@ -268,11 +216,9 @@
   position: absolute;
 
   top: -160px;
-
   right: -100px;
 
   width: 300px;
-
   height: 300px;
 
   border-radius: 50%;
@@ -294,9 +240,7 @@
   position: absolute;
 
   left: 0;
-
   right: 0;
-
   bottom: 0;
 
   height: 1px;
@@ -323,65 +267,54 @@
 
 .contact-form > * {
   position: relative;
-
   z-index: 1;
 }
 
 
-/* ========================================= */
-/* FORM GROUPS                               */
-/* ========================================= */
+/* =========================================
+   FORM GROUPS
+========================================= */
 
 .form-group {
   display: flex;
-
   flex-direction: column;
-
   gap: 8px;
 }
 
-
 .form-group label {
   color: #888888;
-
   font-size: 13px;
-
   font-weight: 600;
 
   transition:
     color 0.25s ease;
 }
 
-
 .form-group:focus-within label {
   color: #72bd7d;
 }
 
 
-/* ========================================= */
-/* INPUTS                                    */
-/* ========================================= */
+/* =========================================
+   INPUTS
+========================================= */
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-
   box-sizing: border-box;
 
   padding: 15px 16px;
 
   border: 1px solid #292929;
-
   border-radius: 8px;
 
   outline: none;
 
   background: #0b0b0b;
-
   color: #ffffff;
 
   font: inherit;
-
   font-size: 14px;
 
   transition:
@@ -390,12 +323,10 @@
     box-shadow 0.25s ease;
 }
 
-
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: #555555;
 }
-
 
 .form-group input:focus,
 .form-group textarea:focus {
@@ -407,40 +338,37 @@
   box-shadow:
     0 0 0 1px
       rgba(90, 180, 105, 0.035),
-
     0 0 18px
       rgba(60, 160, 75, 0.045);
 }
 
-
 .form-group textarea {
   resize: vertical;
-
   min-height: 150px;
 }
 
 
-/* ========================================= */
-/* SEND BUTTON                               */
-/* ========================================= */
+/* =========================================
+   SEND BUTTON
+========================================= */
 
 .submit-button {
   position: relative;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   width: 100%;
 
   margin-top: auto;
 
+  /* Slightly raised from the original position */
+  transform: translateY(-10px);
+
   padding: 16px 20px;
 
   border: 1px solid #303030;
-
   border-radius: 8px;
 
   background: #111111;
@@ -450,9 +378,7 @@
   cursor: none;
 
   font-size: 14px;
-
   font-weight: 600;
-
   letter-spacing: 0.3px;
 
   overflow: hidden;
@@ -497,9 +423,8 @@
 
 
 .submit-button:hover:not(:disabled) {
-
   transform:
-    translateY(-2px);
+    translateY(-10px);
 
   border-color:
     rgba(95, 189, 109, 0.5);
@@ -511,7 +436,6 @@
   box-shadow:
     0 8px 25px
       rgba(0, 0, 0, 0.25),
-
     0 0 18px
       rgba(70, 170, 85, 0.035);
 }
@@ -524,13 +448,12 @@
 
 .submit-button:active:not(:disabled) {
   transform:
-    translateY(0);
+    translateY(-8px);
 }
 
 
 .submit-button:disabled {
   opacity: 0.65;
-
   cursor: not-allowed;
 }
 
@@ -539,7 +462,6 @@
 
 .submit-arrow {
   color: #777777;
-
   font-size: 18px;
 
   transition:
@@ -557,17 +479,15 @@
 }
 
 
-/* ========================================= */
-/* LOADING                                   */
-/* ========================================= */
+/* =========================================
+   LOADING
+========================================= */
 
 .submit-loader {
   width: 18px;
-
   height: 18px;
 
   border: 1px solid #333333;
-
   border-top-color: #72bd7d;
 
   border-radius: 50%;
@@ -575,7 +495,6 @@
   animation:
     submitSpin 0.8s linear infinite;
 }
-
 
 @keyframes submitSpin {
 
@@ -587,29 +506,26 @@
 }
 
 
-/* ========================================= */
-/* ERROR                                     */
-/* ========================================= */
+/* =========================================
+   ERROR
+========================================= */
 
 .form-error {
   color: #ff7b7b;
-
   font-size: 0.82rem;
 }
-
 
 .form-submit-error {
   margin: 0;
 }
 
 
-/* ========================================= */
-/* SUCCESS / BACK SIDE                       */
-/* ========================================= */
+/* =========================================
+   SUCCESS / BACK SIDE
+========================================= */
 
 .success-content {
   position: relative;
-
   z-index: 2;
 
   width: 100%;
@@ -622,13 +538,10 @@
 
 .success-indicator {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   width: 72px;
-
   height: 72px;
 
   margin: 0 auto 30px;
@@ -646,13 +559,10 @@
 
 .success-check {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   width: 44px;
-
   height: 44px;
 
   border: 1px solid
@@ -721,7 +631,6 @@
     monospace;
 
   font-size: 11px;
-
   font-weight: 600;
 
   letter-spacing: 2px;
@@ -734,7 +643,6 @@
   color: #eeeeee;
 
   font-size: 32px;
-
   font-weight: 500;
 
   letter-spacing: -1px;
@@ -749,7 +657,6 @@
   color: #777777;
 
   font-size: 14px;
-
   line-height: 1.7;
 }
 
@@ -768,7 +675,6 @@
   padding: 8px 12px;
 
   border: 1px solid #252525;
-
   border-radius: 6px;
 
   background: #0b0b0b;
@@ -787,7 +693,6 @@
 
 .terminal-dot {
   width: 5px;
-
   height: 5px;
 
   border-radius: 50%;
@@ -806,7 +711,6 @@
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 12px;
@@ -816,7 +720,6 @@
   padding: 13px 18px;
 
   border: 1px solid #292929;
-
   border-radius: 7px;
 
   background: transparent;
@@ -864,9 +767,9 @@
 }
 
 
-/* ========================================= */
-/* TABLET                                    */
-/* ========================================= */
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 900px) {
 
@@ -874,18 +777,14 @@
     padding: 110px 30px;
   }
 
-
   .contact-intro {
     margin-bottom: 60px;
   }
 
-
   .contact-grid {
     grid-template-columns: 1fr;
-
     gap: 55px;
   }
-
 
   .contact-info {
     display: grid;
@@ -899,9 +798,9 @@
 }
 
 
-/* ========================================= */
-/* MOBILE                                    */
-/* ========================================= */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 600px) {
 
@@ -909,20 +808,16 @@
     padding: 90px 20px;
   }
 
-
   .contact-intro {
     margin-bottom: 45px;
   }
-
 
   .eyebrow {
     margin-bottom: 16px;
 
     font-size: 11px;
-
     letter-spacing: 2px;
   }
-
 
   .contact-intro h2 {
     font-size:
@@ -933,7 +828,6 @@
     letter-spacing: -1.5px;
   }
 
-
   .contact-description {
     margin-top: 20px;
 
@@ -942,34 +836,26 @@
     line-height: 1.7;
   }
 
-
   .contact-grid {
     gap: 45px;
   }
 
-
   .contact-info {
     display: flex;
-
     gap: 25px;
   }
-
 
   .contact-item {
     gap: 7px;
   }
 
-
   .contact-label {
     font-size: 9px;
-
     letter-spacing: 1.8px;
   }
 
-
   .contact-item a {
     font-size: 15px;
-
     overflow-wrap: anywhere;
   }
 
@@ -980,11 +866,9 @@
     min-height: 560px;
   }
 
-
   .contact-card-face {
     min-height: 560px;
   }
-
 
   .contact-form {
     min-height: 560px;
@@ -994,16 +878,13 @@
     padding: 24px;
   }
 
-
   .form-group {
     gap: 7px;
   }
 
-
   .form-group label {
     font-size: 12px;
   }
-
 
   .form-group input,
   .form-group textarea {
@@ -1014,11 +895,9 @@
     border-radius: 8px;
   }
 
-
   .form-group textarea {
     min-height: 140px;
   }
-
 
   .submit-button {
     padding: 15px 18px;
@@ -1031,11 +910,9 @@
     padding: 28px;
   }
 
-
   .success-content h3 {
     font-size: 28px;
   }
-
 
   .success-description {
     font-size: 13px;
@@ -1044,33 +921,28 @@
 }
 
 
-/* ========================================= */
-/* VERY SMALL PHONES                         */
-/* ========================================= */
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
 
 @media (max-width: 380px) {
 
   .contact-section {
     padding-left: 16px;
-
     padding-right: 16px;
   }
-
 
   .contact-intro h2 {
     font-size: 36px;
   }
 
-
   .contact-description {
     font-size: 14px;
   }
 
-
   .contact-form {
     padding: 20px;
   }
-
 
   .success-content h3 {
     font-size: 25px;
@@ -1079,24 +951,10 @@
 }
 
 
-/* ========================================= */
-/* REDUCED MOTION                            */
-/* ========================================= */
+/* =========================================
+   ADDITIONAL MOBILE
+========================================= */
 
-@media (prefers-reduced-motion: reduce) {
-
-  .contact-card-inner {
-    transition: none;
-  }
-
-
-  .success-indicator,
-  .success-check,
-  .submit-loader {
-    animation: none;
-  }
-
-}
 @media (max-width: 768px) {
 
   .contact-section {
@@ -1134,6 +992,10 @@
 }
 
 
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
 @media (max-width: 480px) {
 
   .contact-section {
@@ -1142,11 +1004,12 @@
   }
 
   .contact-intro h2 {
-    font-size: clamp(
-      30px,
-      9vw,
-      42px
-    );
+    font-size:
+      clamp(
+        30px,
+        9vw,
+        42px
+      );
 
     line-height: 1.1;
   }
@@ -1176,6 +1039,25 @@
 
   .contact-form button {
     width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .contact-card-inner {
+    transition: none;
+  }
+
+  .success-indicator,
+  .success-check,
+  .submit-loader {
+    animation: none;
   }
 
 }

@@ -9,6 +9,19 @@ from sqlalchemy.orm import Session
 from . import models
 from .database import Base, SessionLocal, engine, get_db
 
+import os
+import smtplib
+from email.message import EmailMessage
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
+EMAIL_USERNAME = os.getenv("EMAIL_USERNAME")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+EMAIL_TO = os.getenv("EMAIL_TO")
 
 # --------------------------------------------------
 # Database initialization
@@ -79,6 +92,52 @@ class ContactRequest(BaseModel):
     name: str
     email: str
     message: str
+
+
+def send_contact_email(
+    name: str,
+    email: str,
+    message: str
+):
+    email_message = EmailMessage()
+
+    email_message["Subject"] = f"New Portfolio Contact from {name}"
+    email_message["From"] = EMAIL_USERNAME
+    email_message["To"] = EMAIL_TO
+    email_message["Reply-To"] = email
+
+    email_message.set_content(
+        f"""
+New contact message from your portfolio.
+
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+"""
+    )
+
+    server = smtplib.SMTP(
+        EMAIL_HOST,
+        EMAIL_PORT,
+        timeout=30
+    )
+
+    try:
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+
+        server.login(
+            EMAIL_USERNAME,
+            EMAIL_PASSWORD
+        )
+
+        server.send_message(email_message)
+
+    finally:
+        server.quit()
 
 
 # --------------------------------------------------
@@ -559,6 +618,23 @@ def contact(
     db.add(new_contact)
     db.commit()
     db.refresh(new_contact)
+
+    try:
+        send_contact_email(
+            name=request.name,
+            email=request.email,
+            message=request.message
+        )
+
+    except Exception as error:
+        print(f"Email sending failed: {error}")
+
+        return {
+            "message": (
+                "Your message was saved successfully, "
+                "but email notification could not be sent."
+            )
+        }
 
     return {
         "message": f"Thanks {request.name}, your message has been received."
