@@ -2,9 +2,15 @@
 
   <div class="section-container">
 
-    <div class="section-heading">
+    <!-- =========================================
+         SECTION HEADING
+    ========================================== -->
 
-      <p class="eyebrow">SKILLS & TECHNOLOGIES</p>
+    <div class="section-heading" appScrollReveal style="--reveal-delay: 0ms">
+
+      <p class="eyebrow">
+        SKILLS & TECHNOLOGIES
+      </p>
 
       <h2>
         Tools I use to
@@ -14,138 +20,200 @@
     </div>
 
 
+    <!-- =========================================
+         LOADING
+    ========================================== -->
+
     @if (isLoading()) {
 
-      <div class="skills-grid">
+    <div class="skills-grid">
 
-        <article class="skill-group">
+      <article class="skill-group">
 
-          <div class="skill-header">
+        <div class="skill-header">
 
-            <span class="skill-number">
-              01
-            </span>
+          <span class="skill-number">
+            01
+          </span>
 
-            <h3>Loading skills...</h3>
+          <h3>
+            Loading skills...
+          </h3>
 
-          </div>
+        </div>
 
-        </article>
+      </article>
 
-      </div>
+    </div>
 
     }
 
+
+    <!-- =========================================
+         ERROR
+    ========================================== -->
 
     @else if (errorMessage()) {
 
-      <div class="skills-grid">
+    <div class="skills-grid">
 
-        <article class="skill-group">
+      <article class="skill-group">
 
-          <div class="skill-header">
+        <div class="skill-header">
 
-            <span class="skill-number">
-              !
-            </span>
+          <span class="skill-number">
+            !
+          </span>
 
-            <h3>Unable to load skills</h3>
+          <h3>
+            Unable to load skills
+          </h3>
 
-          </div>
+        </div>
 
-          <p>
-            {{ errorMessage() }}
-          </p>
+        <p>
+          {{ errorMessage() }}
+        </p>
 
-          <button
-            type="button"
-            (click)="loadSkills()"
-          >
-            Try Again
-          </button>
+        <button type="button" (click)="loadSkills()">
+          Try Again
+        </button>
 
-        </article>
+      </article>
 
-      </div>
+    </div>
 
     }
 
+
+    <!-- =========================================
+         EMPTY
+    ========================================== -->
 
     @else if (skillGroups().length === 0) {
 
-      <div class="skills-grid">
+    <div class="skills-grid">
 
-        <article class="skill-group">
+      <article class="skill-group">
 
-          <div class="skill-header">
+        <div class="skill-header">
 
-            <span class="skill-number">
-              00
-            </span>
+          <span class="skill-number">
+            00
+          </span>
 
-            <h3>No skills found</h3>
+          <h3>
+            No skills found
+          </h3>
 
-          </div>
+        </div>
 
-        </article>
+      </article>
 
-      </div>
+    </div>
 
     }
 
+
+    <!-- =========================================
+         SKILLS
+    ========================================== -->
 
     @else {
 
-      <div class="skills-grid">
+    <div class="skills-grid">
 
-        @for (
-          group of skillGroups();
-          track group.id;
-          let i = $index
-        ) {
+      @for (
+      group of skillGroups();
+      track group.id;
+      let i = $index
+      ) {
 
-          <article class="skill-group">
+       <article
+            class="skill-group"
+            appScrollReveal
+            [style.--reveal-delay]="
+              (150 + (i * 120)) + 'ms'
+            "
 
-            <div class="skill-header">
+            (mouseenter)="
+              onSkillGroupEnter(
+                $any($event.currentTarget)
+              )
+            "
 
-              <span class="skill-number">
-                {{ (i + 1).toString().padStart(2, '0') }}
-              </span>
+            (mousemove)="
+              onSkillGroupMove(
+                $event,
+                $any($event.currentTarget)
+              )
+            "
 
-              <h3>
-                {{ group.title }}
-              </h3>
+            (mouseleave)="
+              onSkillGroupLeave(
+                $any($event.currentTarget)
+              )
+            "
+          >
 
-            </div>
+            <!-- =================================
+                 HEADER
+            ================================== -->
+
+            <div class=" skill-header">
+
+        <span class="skill-number">
+
+          {{
+          (i + 1)
+          .toString()
+          .padStart(2, '0')
+          }}
+
+        </span>
+
+        <h3>
+          {{ group.title }}
+        </h3>
+
+    </div>
 
 
-            <p>
-              {{ group.description }}
-            </p>
+    <!-- =================================
+                 DESCRIPTION
+            ================================== -->
+
+    <p>
+      {{ group.description }}
+    </p>
 
 
-            <div class="skill-list">
+    <!-- =================================
+                 SKILLS
+            ================================== -->
 
-              @for (
-                skill of group.skills;
-                track skill
-              ) {
+    <div class="skill-list">
 
-                <span>
-                  {{ skill }}
-                </span>
+      @for (
+      skill of group.skills;
+      track skill
+      ) {
 
-              }
+      <span>
+        {{ skill }}
+      </span>
 
-            </div>
+      }
 
-          </article>
+    </div>
 
-        }
-
-      </div>
+    </article>
 
     }
+
+  </div>
+
+  }
 
   </div>
 

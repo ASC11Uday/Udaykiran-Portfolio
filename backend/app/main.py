@@ -3,6 +3,7 @@ import json
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from sqlalchemy import inspect, text
 from sqlalchemy.orm import Session
 
 from . import models
@@ -15,7 +16,37 @@ from .database import Base, SessionLocal, engine, get_db
 
 Base.metadata.create_all(bind=engine)
 
+def migrate_project_table():
+    inspector = inspect(engine)
 
+    columns = {
+        column["name"]
+        for column in inspector.get_columns("projects")
+    }
+
+    new_columns = {
+        "overview": "TEXT NOT NULL DEFAULT ''",
+        "contribution": "TEXT NOT NULL DEFAULT ''",
+        "highlights": "TEXT NOT NULL DEFAULT '[]'"
+    }
+
+    with engine.begin() as connection:
+
+        for column_name, column_definition in new_columns.items():
+
+            if column_name not in columns:
+
+                connection.execute(
+                    text(
+                        f"""
+                        ALTER TABLE projects
+                        ADD COLUMN {column_name}
+                        {column_definition}
+                        """
+                    )
+                )
+
+migrate_project_table()
 # --------------------------------------------------
 # FastAPI application
 # --------------------------------------------------
@@ -73,6 +104,24 @@ def seed_projects():
                     "content and identify potentially misleading information "
                     "using Python-based ML techniques."
                 ),
+                                overview=(
+                    "A machine learning application that analyzes "
+                    "news content and predicts whether an article "
+                    "is likely to be misleading."
+                ),
+
+                contribution=(
+                    "Developed the machine learning workflow in Python, "
+                    "including data preparation, text processing, model "
+                    "training, and prediction."
+                ),
+
+                highlights=json.dumps([
+                    "Text preprocessing and NLP",
+                    "Machine learning classification",
+                    "Training and prediction workflow",
+                    "Python-based implementation"
+                ]),
                 type="AI / MACHINE LEARNING",
                 category="AI / ML",
                 technologies=json.dumps([
@@ -91,6 +140,23 @@ def seed_projects():
                     "workflows with authentication, backend APIs, and "
                     "relational data management."
                 ),
+                overview=(
+    "A full-stack web application for managing tour-related "
+    "workflows with user authentication, backend APIs, and "
+    "relational data management."
+),
+
+contribution=(
+    "Worked across the Angular frontend and Spring Boot backend, "
+    "integrating REST APIs, authentication, and MySQL persistence."
+),
+
+highlights=json.dumps([
+    "Angular frontend development",
+    "Spring Boot REST APIs",
+    "JWT authentication",
+    "MySQL database integration"
+]),
                 type="FULL STACK",
                 category="FULL STACK",
                 technologies=json.dumps([
@@ -110,6 +176,22 @@ def seed_projects():
                     "detection using deep learning and object detection "
                     "techniques."
                 ),
+                overview=(
+    "A computer vision project that explores automated glaucoma "
+    "detection from medical images using deep learning techniques."
+),
+
+contribution=(
+    "Worked on the image-processing and deep-learning workflow "
+    "for detecting glaucoma-related patterns using CNN and YOLOv8."
+),
+
+highlights=json.dumps([
+    "Medical image analysis",
+    "CNN-based deep learning",
+    "YOLOv8 object detection",
+    "Computer vision workflow"
+]),
                 type="COMPUTER VISION",
                 category="DEEP LEARNING",
                 technologies=json.dumps([
@@ -129,6 +211,22 @@ def seed_projects():
                     "explore desktop application development and media "
                     "handling."
                 ),
+                overview=(
+    "A Python-based music player application created to explore "
+    "desktop application development and media handling."
+),
+
+contribution=(
+    "Developed the core Python application flow for playing and "
+    "managing audio files."
+),
+
+highlights=json.dumps([
+    "Python application development",
+    "Audio playback",
+    "Desktop application workflow",
+    "Media file handling"
+]),
                 type="PYTHON",
                 category="PYTHON",
                 technologies=json.dumps([
@@ -147,6 +245,108 @@ def seed_projects():
     finally:
         db.close()
 
+def update_project_details():
+    db = SessionLocal()
+
+    try:
+        project_details = {
+
+            "Fake News Prediction": {
+                "overview": (
+                    "A machine learning application that analyzes "
+                    "news content and predicts whether an article "
+                    "is likely to be misleading."
+                ),
+                "contribution": (
+                    "Developed the machine learning workflow in Python, "
+                    "including data preparation, text processing, model "
+                    "training, and prediction."
+                ),
+                "highlights": [
+                    "Text preprocessing and NLP",
+                    "Machine learning classification",
+                    "Training and prediction workflow",
+                    "Python-based implementation"
+                ]
+            },
+
+            "Tour Management System": {
+                "overview": (
+                    "A full-stack web application for managing "
+                    "tour-related workflows with user authentication, "
+                    "backend APIs, and relational data management."
+                ),
+                "contribution": (
+                    "Worked across the Angular frontend and Spring Boot "
+                    "backend, integrating REST APIs, authentication, "
+                    "and MySQL persistence."
+                ),
+                "highlights": [
+                    "Angular frontend development",
+                    "Spring Boot REST APIs",
+                    "JWT authentication",
+                    "MySQL database integration"
+                ]
+            },
+
+            "Glaucoma Detection": {
+                "overview": (
+                    "A computer vision project that explores automated "
+                    "glaucoma detection from medical images using "
+                    "deep learning techniques."
+                ),
+                "contribution": (
+                    "Worked on the image-processing and deep-learning "
+                    "workflow for detecting glaucoma-related patterns "
+                    "using CNN and YOLOv8."
+                ),
+                "highlights": [
+                    "Medical image analysis",
+                    "CNN-based deep learning",
+                    "YOLOv8 object detection",
+                    "Computer vision workflow"
+                ]
+            },
+
+            "Music Player": {
+                "overview": (
+                    "A Python-based music player application created "
+                    "to explore desktop application development "
+                    "and media handling."
+                ),
+                "contribution": (
+                    "Developed the core Python application flow for "
+                    "playing and managing audio files."
+                ),
+                "highlights": [
+                    "Python application development",
+                    "Audio playback",
+                    "Desktop application workflow",
+                    "Media file handling"
+                ]
+            }
+        }
+
+        for title, details in project_details.items():
+
+            project = (
+                db.query(models.Project)
+                .filter(models.Project.title == title)
+                .first()
+            )
+
+            if project:
+                project.overview = details["overview"]
+                project.contribution = details["contribution"]
+                project.highlights = json.dumps(
+                    details["highlights"]
+                )
+
+        db.commit()
+
+    finally:
+        db.close()
+update_project_details()
 
 def seed_experiences():
     db = SessionLocal()
@@ -394,15 +594,18 @@ def get_projects(
     for project in projects:
 
         result.append({
-            "id": project.id,
-            "title": project.title,
-            "description": project.description,
-            "type": project.type,
-            "category": project.category,
-            "technologies": json.loads(project.technologies),
-            "github": project.github,
-            "featured": project.featured
-        })
+    "id": project.id,
+    "title": project.title,
+    "description": project.description,
+    "type": project.type,
+    "category": project.category,
+    "technologies": json.loads(project.technologies),
+    "github": project.github,
+    "featured": project.featured,
+    "overview": project.overview,
+    "contribution": project.contribution,
+    "highlights": json.loads(project.highlights)
+})
 
     return result
 

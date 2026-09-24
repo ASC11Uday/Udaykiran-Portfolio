@@ -9,10 +9,11 @@ import {
   AboutData,
   AboutService
 } from '../../services/about.service';
+import { ScrollRevealDirective } from '../../shared/scroll-reveal.directive';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [ScrollRevealDirective],
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })

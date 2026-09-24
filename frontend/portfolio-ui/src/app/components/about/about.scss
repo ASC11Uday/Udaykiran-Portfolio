@@ -272,3 +272,249 @@ h2 span {
   }
 
 }
+
+/* =========================================
+   ABOUT HIGHLIGHT MICRO-INTERACTIONS
+========================================= */
+
+.highlight-card {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* -----------------------------------------
+   LEFT ACCENT
+----------------------------------------- */
+
+.highlight-card::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  width: 2px;
+  height: 0;
+
+  background: #72bd7d;
+
+  transform: translateY(-50%);
+
+  opacity: 0;
+
+  transition:
+    height 0.3s ease,
+    opacity 0.3s ease;
+}
+
+
+/* -----------------------------------------
+   SUBTLE INNER GLOW
+----------------------------------------- */
+
+.highlight-card::after {
+  content: '';
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  right: -90px;
+  top: -90px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(114, 189, 125, 0.08),
+      transparent 70%
+    );
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease;
+}
+
+
+/* -----------------------------------------
+   HOVER
+----------------------------------------- */
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(114, 189, 125, 0.22);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  box-shadow:
+    0 14px 35px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+.highlight-card:hover::before {
+  height: 55%;
+  opacity: 1;
+}
+
+
+.highlight-card:hover::after {
+  opacity: 1;
+}
+
+
+/* -----------------------------------------
+   NUMBER
+----------------------------------------- */
+
+.highlight-number {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+
+.highlight-card:hover
+.highlight-number {
+  color: #72bd7d;
+
+  transform:
+    translateX(3px);
+
+  text-shadow:
+    0 0 14px
+    rgba(114, 189, 125, 0.18);
+}
+
+
+/* -----------------------------------------
+   TITLE
+----------------------------------------- */
+
+.highlight-card h3 {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.highlight-card:hover h3 {
+  color: #f4f4f4;
+
+  transform:
+    translateX(2px);
+}
+
+
+/* -----------------------------------------
+   DESCRIPTION
+----------------------------------------- */
+
+.highlight-card p {
+  transition:
+    color 0.3s ease;
+}
+
+
+.highlight-card:hover p {
+  color: #a8aaa8;
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .highlight-card,
+  .highlight-number,
+  .highlight-card h3,
+  .highlight-card p,
+  .highlight-card::before,
+  .highlight-card::after {
+    transition: none;
+  }
+
+  .highlight-card:hover,
+  .highlight-card:hover h3,
+  .highlight-card:hover
+  .highlight-number {
+    transform: none;
+  }
+}
+@media (max-width: 768px) {
+
+  .about-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .highlight-card {
+    padding: 22px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .about-section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .highlight-card {
+    padding: 20px;
+  }
+
+  .highlight-number {
+    font-size: 12px;
+  }
+
+  .highlight-card h3 {
+    font-size: 17px;
+  }
+
+  .highlight-card p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+}

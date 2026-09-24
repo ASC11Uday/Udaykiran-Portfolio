@@ -1,0 +1,135 @@
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <!-- TOP -->
+    <div class="footer-main">
+
+      <!-- BRAND -->
+      <div class="footer-brand">
+
+        <button
+          class="footer-logo"
+          type="button"
+          (click)="scrollToTop()"
+        >
+          U<span>K</span>
+        </button>
+
+        <p class="footer-tagline">
+          Building systems.<br>
+          Solving problems.
+        </p>
+
+      </div>
+
+
+      <!-- NAVIGATION -->
+      <div class="footer-column">
+
+        <span class="footer-label">
+          NAVIGATION
+        </span>
+
+        <a href="#home">
+          Home
+        </a>
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#experience">
+          Experience
+        </a>
+
+        <a href="#projects">
+          Projects
+        </a>
+
+        <a href="#skills">
+          Skills
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+      </div>
+
+
+      <!-- CONNECT -->
+      <div class="footer-column">
+
+        <span class="footer-label">
+          CONNECT
+        </span>
+
+        <a
+          href="https://github.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub ↗
+        </a>
+
+        <a
+          href="https://www.linkedin.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+
+      </div>
+
+
+      <!-- STATUS -->
+      <div class="footer-status">
+
+        <span class="status-dot"></span>
+
+        <div>
+          <span class="status-title">
+            SYSTEM ONLINE
+          </span>
+
+          <span class="status-subtitle">
+            Available for opportunities
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+
+      <span>
+        © {{ currentYear }} Udaykiran
+      </span>
+
+      <span class="footer-built">
+        Designed &amp; built with
+        <span class="footer-accent">Angular</span>
+        +
+        <span class="footer-accent">FastAPI</span>
+      </span>
+
+
+      <button
+        class="back-to-top"
+        type="button"
+        (click)="scrollToTop()"
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
+
+    </div>
+
+  </div>
+
+</footer>

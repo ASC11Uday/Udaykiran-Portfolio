@@ -14,7 +14,9 @@
 }
 
 
-/* Contact intro */
+/* ========================================= */
+/* INTRO                                     */
+/* ========================================= */
 
 .contact-intro {
   max-width: 850px;
@@ -65,12 +67,15 @@
 }
 
 
-/* Contact layout */
+/* ========================================= */
+/* CONTACT GRID                              */
+/* ========================================= */
 
 .contact-grid {
   display: grid;
 
-  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-columns:
+    0.7fr 1.3fr;
 
   gap: 100px;
 
@@ -78,7 +83,9 @@
 }
 
 
-/* Contact information */
+/* ========================================= */
+/* CONTACT INFO                              */
+/* ========================================= */
 
 .contact-info {
   display: flex;
@@ -118,25 +125,212 @@
 
   font-size: 16px;
 
-  transition: color 0.2s ease;
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease;
 }
 
 
 .contact-item a:hover {
-  color: #8d7cff;
+  color: #72bd7d;
+
+  text-shadow:
+    0 0 10px rgba(80, 180, 95, 0.18);
 }
 
 
-/* Form */
+/* ========================================= */
+/* 3D FLIP CARD                              */
+/* ========================================= */
+
+.contact-card {
+  position: relative;
+
+  width: 100%;
+
+  perspective: 1200px;
+}
+
+
+.contact-card-inner {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 530px;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.8s
+    cubic-bezier(
+      0.22,
+      0.61,
+      0.36,
+      1
+    );
+}
+
+
+/* Flip */
+
+.contact-card.is-sent
+.contact-card-inner {
+  transform:
+    rotateY(180deg);
+}
+
+
+/* ========================================= */
+/* CARD FACES                                */
+/* ========================================= */
+
+.contact-card-face {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  min-height: 530px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #252525;
+
+  border-radius: 16px;
+
+  background: #101010;
+
+  overflow: hidden;
+
+  backface-visibility: hidden;
+
+  -webkit-backface-visibility: hidden;
+}
+
+
+/* Front */
+
+.contact-card-front {
+  transform:
+    rotateY(0deg);
+}
+
+
+/* Back */
+
+.contact-card-back {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 40px;
+
+  transform:
+    rotateY(180deg);
+}
+
+
+/* ========================================= */
+/* FORM                                      */
+/* ========================================= */
 
 .contact-form {
+  position: relative;
+
   display: flex;
 
   flex-direction: column;
 
   gap: 20px;
+
+  height: 100%;
+
+  min-height: 530px;
+
+  padding: 32px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
 }
 
+
+/* Subtle background light */
+
+.contact-form::before,
+.contact-card-back::before {
+  content: '';
+
+  position: absolute;
+
+  top: -160px;
+
+  right: -100px;
+
+  width: 300px;
+
+  height: 300px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(80, 180, 95, 0.045),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+
+.contact-form::after {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(95, 189, 109, 0.2),
+      transparent
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.3s ease;
+}
+
+
+.contact-form:focus-within::after {
+  opacity: 1;
+}
+
+
+.contact-form > * {
+  position: relative;
+
+  z-index: 1;
+}
+
+
+/* ========================================= */
+/* FORM GROUPS                               */
+/* ========================================= */
 
 .form-group {
   display: flex;
@@ -153,8 +347,20 @@
   font-size: 13px;
 
   font-weight: 600;
+
+  transition:
+    color 0.25s ease;
 }
 
+
+.form-group:focus-within label {
+  color: #72bd7d;
+}
+
+
+/* ========================================= */
+/* INPUTS                                    */
+/* ========================================= */
 
 .form-group input,
 .form-group textarea {
@@ -170,7 +376,7 @@
 
   outline: none;
 
-  background: #101010;
+  background: #0b0b0b;
 
   color: #ffffff;
 
@@ -179,16 +385,31 @@
   font-size: 14px;
 
   transition:
-    border-color 0.2s ease,
-    background 0.2s ease;
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #555555;
 }
 
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #555555;
+  border-color:
+    rgba(90, 180, 105, 0.55);
 
-  background: #121212;
+  background: #0d0d0d;
+
+  box-shadow:
+    0 0 0 1px
+      rgba(90, 180, 105, 0.035),
+
+    0 0 18px
+      rgba(60, 160, 75, 0.045);
 }
 
 
@@ -199,9 +420,13 @@
 }
 
 
-/* Submit button */
+/* ========================================= */
+/* SEND BUTTON                               */
+/* ========================================= */
 
 .submit-button {
+  position: relative;
+
   display: flex;
 
   align-items: center;
@@ -210,49 +435,161 @@
 
   width: 100%;
 
+  margin-top: auto;
+
   padding: 16px 20px;
 
-  border: none;
+  border: 1px solid #303030;
 
   border-radius: 8px;
 
-  background: #ffffff;
+  background: #111111;
 
-  color: #080808;
+  color: #dddddd;
 
-  cursor: pointer;
+  cursor: none;
 
   font-size: 14px;
 
   font-weight: 600;
 
+  letter-spacing: 0.3px;
+
+  overflow: hidden;
+
   transition:
     transform 0.2s ease,
-    background 0.2s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
     opacity 0.2s ease;
 }
 
 
-.submit-button:hover:not(:disabled) {
-  transform: translateY(-3px);
+/* Moving scan */
 
-  background: #eeeeee;
+.submit-button::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: -100%;
+
+  width: 45%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(95, 189, 109, 0.10),
+      transparent
+    );
+
+  transition:
+    left 0.55s ease;
+
+  pointer-events: none;
+}
+
+
+.submit-button:hover:not(:disabled) {
+
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(95, 189, 109, 0.5);
+
+  background: #141414;
+
+  color: #f0f0f0;
+
+  box-shadow:
+    0 8px 25px
+      rgba(0, 0, 0, 0.25),
+
+    0 0 18px
+      rgba(70, 170, 85, 0.035);
+}
+
+
+.submit-button:hover:not(:disabled)::before {
+  left: 130%;
+}
+
+
+.submit-button:active:not(:disabled) {
+  transform:
+    translateY(0);
 }
 
 
 .submit-button:disabled {
-  opacity: 0.6;
+  opacity: 0.65;
 
   cursor: not-allowed;
 }
 
 
-.submit-button span {
+/* Arrow */
+
+.submit-arrow {
+  color: #777777;
+
   font-size: 18px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 
-/* Form messages */
+.submit-button:hover:not(:disabled)
+.submit-arrow {
+  color: #72bd7d;
+
+  transform:
+    translate(3px, -3px);
+}
+
+
+/* ========================================= */
+/* LOADING                                   */
+/* ========================================= */
+
+.submit-loader {
+  width: 18px;
+
+  height: 18px;
+
+  border: 1px solid #333333;
+
+  border-top-color: #72bd7d;
+
+  border-radius: 50%;
+
+  animation:
+    submitSpin 0.8s linear infinite;
+}
+
+
+@keyframes submitSpin {
+
+  to {
+    transform:
+      rotate(360deg);
+  }
+
+}
+
+
+/* ========================================= */
+/* ERROR                                     */
+/* ========================================= */
 
 .form-error {
   color: #ff7b7b;
@@ -261,22 +598,275 @@
 }
 
 
-.form-success {
+.form-submit-error {
   margin: 0;
-
-  padding: 0.9rem 1rem;
-
-  border-radius: 10px;
-
-  background: rgba(80, 200, 120, 0.1);
-
-  color: #72e6a0;
-
-  font-size: 0.9rem;
 }
 
 
-/* Tablet */
+/* ========================================= */
+/* SUCCESS / BACK SIDE                       */
+/* ========================================= */
+
+.success-content {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  text-align: center;
+}
+
+
+/* Check circle */
+
+.success-indicator {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 72px;
+
+  height: 72px;
+
+  margin: 0 auto 30px;
+
+  border: 1px solid
+    rgba(95, 189, 109, 0.35);
+
+  border-radius: 50%;
+
+  animation:
+    successPulse 2.5s
+    ease-in-out infinite;
+}
+
+
+.success-check {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 44px;
+
+  height: 44px;
+
+  border: 1px solid
+    rgba(95, 189, 109, 0.65);
+
+  border-radius: 50%;
+
+  color: #72bd7d;
+
+  font-size: 21px;
+
+  animation:
+    successCheck 0.5s
+    ease-out;
+}
+
+
+@keyframes successPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 0
+      rgba(95, 189, 109, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 25px
+      rgba(95, 189, 109, 0.08);
+  }
+
+}
+
+
+@keyframes successCheck {
+
+  from {
+    opacity: 0;
+
+    transform:
+      scale(0.5)
+      rotate(-20deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      rotate(0);
+  }
+
+}
+
+
+/* Status */
+
+.success-label {
+  margin: 0 0 14px;
+
+  color: #72bd7d;
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+}
+
+
+.success-content h3 {
+  margin: 0;
+
+  color: #eeeeee;
+
+  font-size: 32px;
+
+  font-weight: 500;
+
+  letter-spacing: -1px;
+}
+
+
+.success-description {
+  max-width: 380px;
+
+  margin: 18px auto 25px;
+
+  color: #777777;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* Terminal connection */
+
+.terminal-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 35px;
+
+  padding: 8px 12px;
+
+  border: 1px solid #252525;
+
+  border-radius: 6px;
+
+  background: #0b0b0b;
+
+  color: #666666;
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 1.5px;
+}
+
+
+.terminal-dot {
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #72bd7d;
+
+  box-shadow:
+    0 0 7px
+    rgba(95, 189, 109, 0.5);
+}
+
+
+/* Another message */
+
+.another-message-button {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  width: 100%;
+
+  padding: 13px 18px;
+
+  border: 1px solid #292929;
+
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #888888;
+
+  cursor: none;
+
+  font: inherit;
+
+  font-size: 12px;
+
+  letter-spacing: 0.5px;
+
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.another-message-button:hover {
+  border-color:
+    rgba(95, 189, 109, 0.4);
+
+  background:
+    rgba(95, 189, 109, 0.025);
+
+  color: #72bd7d;
+}
+
+
+.another-arrow {
+  font-size: 16px;
+
+  transition:
+    transform 0.2s ease;
+}
+
+
+.another-message-button:hover
+.another-arrow {
+  transform:
+    translate(3px, -3px);
+}
+
+
+/* ========================================= */
+/* TABLET                                    */
+/* ========================================= */
 
 @media (max-width: 900px) {
 
@@ -309,7 +899,9 @@
 }
 
 
-/* Mobile */
+/* ========================================= */
+/* MOBILE                                    */
+/* ========================================= */
 
 @media (max-width: 600px) {
 
@@ -333,7 +925,8 @@
 
 
   .contact-intro h2 {
-    font-size: clamp(38px, 11vw, 50px);
+    font-size:
+      clamp(38px, 11vw, 50px);
 
     line-height: 1.06;
 
@@ -381,8 +974,24 @@
   }
 
 
+  /* Flip card */
+
+  .contact-card-inner {
+    min-height: 560px;
+  }
+
+
+  .contact-card-face {
+    min-height: 560px;
+  }
+
+
   .contact-form {
+    min-height: 560px;
+
     gap: 18px;
+
+    padding: 24px;
   }
 
 
@@ -415,15 +1024,35 @@
     padding: 15px 18px;
   }
 
+
+  /* Success */
+
+  .contact-card-back {
+    padding: 28px;
+  }
+
+
+  .success-content h3 {
+    font-size: 28px;
+  }
+
+
+  .success-description {
+    font-size: 13px;
+  }
+
 }
 
 
-/* Very small phones */
+/* ========================================= */
+/* VERY SMALL PHONES                         */
+/* ========================================= */
 
 @media (max-width: 380px) {
 
   .contact-section {
     padding-left: 16px;
+
     padding-right: 16px;
   }
 
@@ -435,6 +1064,118 @@
 
   .contact-description {
     font-size: 14px;
+  }
+
+
+  .contact-form {
+    padding: 20px;
+  }
+
+
+  .success-content h3 {
+    font-size: 25px;
+  }
+
+}
+
+
+/* ========================================= */
+/* REDUCED MOTION                            */
+/* ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .contact-card-inner {
+    transition: none;
+  }
+
+
+  .success-indicator,
+  .success-check,
+  .submit-loader {
+    animation: none;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .contact-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-info {
+    width: 100%;
+  }
+
+  .contact-card {
+    width: 100%;
+  }
+
+  .contact-card-front,
+  .contact-card-back {
+    padding: 28px 22px;
+  }
+
+  .contact-form {
+    width: 100%;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .contact-section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .contact-intro h2 {
+    font-size: clamp(
+      30px,
+      9vw,
+      42px
+    );
+
+    line-height: 1.1;
+  }
+
+  .contact-description {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .contact-item {
+    padding: 16px 0;
+  }
+
+  .contact-card-front,
+  .contact-card-back {
+    padding: 24px 18px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 14px;
+  }
+
+  .contact-form textarea {
+    min-height: 130px;
+  }
+
+  .contact-form button {
+    width: 100%;
   }
 
 }

@@ -1,0 +1,104 @@
+:host {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+
+  pointer-events: none;
+
+  display: block;
+}
+
+
+.cursor-dot {
+
+  position: fixed;
+
+  width: 6px;
+
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #00ff41;
+
+  box-shadow:
+    0 0 8px rgba(0, 255, 65, 0.7);
+
+  transform:
+    translate(-50%, -50%);
+
+  pointer-events: none;
+
+}
+
+
+.cursor-ring {
+
+  position: fixed;
+
+  width: 32px;
+
+  height: 32px;
+
+  border: 1px solid
+    rgba(0, 255, 65, 0.55);
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  pointer-events: none;
+
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+
+}
+
+
+:host(.interactive) .cursor-ring {
+
+  width: 48px;
+
+  height: 48px;
+
+  border-color:
+    rgba(0, 255, 65, 0.85);
+
+  background:
+    rgba(0, 255, 65, 0.04);
+
+  box-shadow:
+    0 0 18px
+    rgba(0, 255, 65, 0.18);
+
+}
+
+
+:host(.magnetic) .cursor-ring {
+
+  width: 54px;
+
+  height: 54px;
+
+  border-color:
+    rgba(0, 255, 65, 0.95);
+
+}
+
+
+@media (pointer: coarse) {
+
+  :host {
+
+    display: none;
+
+  }
+
+}

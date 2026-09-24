@@ -6,17 +6,20 @@
   color: #ffffff;
 }
 
+
 .section-container {
   max-width: 1200px;
 
   margin: 0 auto;
 }
 
+
 .section-heading {
   max-width: 850px;
 
   margin-bottom: 80px;
 }
+
 
 .eyebrow {
   margin-bottom: 20px;
@@ -30,6 +33,7 @@
   letter-spacing: 3px;
 }
 
+
 h2 {
   margin: 0;
 
@@ -40,19 +44,29 @@ h2 {
   letter-spacing: -2px;
 }
 
+
 h2 span {
   color: #777777;
 }
 
+
+/* Skills grid */
+
 .skills-grid {
   display: grid;
 
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns:
+    repeat(2, 1fr);
 
   gap: 20px;
 }
 
+
+/* Skill group */
+
 .skill-group {
+  position: relative;
+
   padding: 35px;
 
   border: 1px solid #252525;
@@ -61,16 +75,73 @@ h2 span {
 
   background: #101010;
 
+  overflow: hidden;
+
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease;
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
+
+
+/* Cursor-reactive background */
+
+.skill-group::before {
+  content: '';
+
+  position: absolute;
+
+  top: -100px;
+  right: -100px;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 255, 65, 0.08),
+      transparent 70%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.3s ease;
+
+  pointer-events: none;
+}
+
 
 .skill-group:hover {
   transform: translateY(-5px);
 
-  border-color: #414141;
+  border-color:
+    rgba(0, 255, 65, 0.3);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.3),
+    0 0 25px rgba(0, 255, 65, 0.035);
 }
+
+
+.skill-group:hover::before {
+  opacity: 1;
+}
+
+
+/* Keep content above glow */
+
+.skill-group > * {
+  position: relative;
+
+  z-index: 1;
+}
+
+
+/* Header */
 
 .skill-header {
   display: flex;
@@ -82,13 +153,23 @@ h2 span {
   margin-bottom: 20px;
 }
 
+
 .skill-number {
   color: #666666;
 
   font-family: monospace;
 
   font-size: 12px;
+
+  transition:
+    color 0.25s ease;
 }
+
+
+.skill-group:hover .skill-number {
+  color: #00ff41;
+}
+
 
 .skill-header h3 {
   margin: 0;
@@ -97,6 +178,9 @@ h2 span {
 
   font-weight: 600;
 }
+
+
+/* Description */
 
 .skill-group > p {
   max-width: 500px;
@@ -110,6 +194,9 @@ h2 span {
   line-height: 1.7;
 }
 
+
+/* Skills */
+
 .skill-list {
   display: flex;
 
@@ -119,6 +206,7 @@ h2 span {
 
   margin-top: 30px;
 }
+
 
 .skill-list span {
   padding: 8px 12px;
@@ -135,14 +223,61 @@ h2 span {
 
   transition:
     color 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
+
 
 .skill-list span:hover {
+  color: #00ff41;
+
+  border-color:
+    rgba(0, 255, 65, 0.45);
+
+  background:
+    rgba(0, 255, 65, 0.035);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, 0.08);
+}
+
+
+/* Loading / error buttons */
+
+.skill-group button {
+  margin-top: 20px;
+
+  padding: 9px 16px;
+
+  border: 1px solid #333333;
+
+  border-radius: 6px;
+
+  background: transparent;
+
   color: #ffffff;
 
-  border-color: #555555;
+  font-family: inherit;
+
+  cursor: none;
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
+
+
+.skill-group button:hover {
+  border-color: #00ff41;
+
+  color: #00ff41;
+}
+
+
+/* Tablet / Mobile */
 
 @media (max-width: 800px) {
 
@@ -152,6 +287,326 @@ h2 span {
 
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .section-heading {
+    margin-bottom: 50px;
+  }
+
+  .eyebrow {
+    margin-bottom: 16px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    font-size: clamp(38px, 11vw, 50px);
+
+    line-height: 1.06;
+
+    letter-spacing: -1.5px;
+  }
+
+  .skill-group {
+    padding: 28px;
+  }
+
+  .skill-header {
+    gap: 14px;
+  }
+
+  .skill-header h3 {
+    font-size: 20px;
+  }
+
+  .skill-group > p {
+    font-size: 14px;
+  }
+
+}
+/* =========================================
+   SKILLS MICRO-INTERACTIONS
+========================================= */
+
+.skill-group {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* -----------------------------------------
+   SUBTLE ACTIVE EDGE
+----------------------------------------- */
+
+.skill-group::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  width: 2px;
+  height: 0;
+
+  background: #72bd7d;
+
+  transform: translateY(-50%);
+
+  opacity: 0;
+
+  transition:
+    height 0.3s ease,
+    opacity 0.3s ease;
+}
+
+
+/* -----------------------------------------
+   CURSOR-REACTIVE GLOW
+----------------------------------------- */
+
+.skill-group::after {
+  content: '';
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  left: var(--mouse-x, -220px);
+  top: var(--mouse-y, -220px);
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(114, 189, 125, 0.07),
+      transparent 70%
+    );
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease;
+}
+
+
+/* -----------------------------------------
+   ACTIVE / HOVER
+----------------------------------------- */
+
+.skill-group.is-active {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(114, 189, 125, 0.22);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  box-shadow:
+    0 14px 35px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+.skill-group.is-active::before {
+  height: 55%;
+  opacity: 1;
+}
+
+
+.skill-group.is-active::after {
+  opacity: 1;
+}
+
+
+/* -----------------------------------------
+   NUMBER
+----------------------------------------- */
+
+.skill-number {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+
+.skill-group.is-active
+.skill-number {
+  color: #72bd7d;
+
+  transform:
+    translateX(3px);
+
+  text-shadow:
+    0 0 14px
+    rgba(114, 189, 125, 0.18);
+}
+
+
+/* -----------------------------------------
+   TITLE
+----------------------------------------- */
+
+.skill-group h3 {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.skill-group.is-active h3 {
+  color: #f4f4f4;
+
+  transform:
+    translateX(2px);
+}
+
+
+/* -----------------------------------------
+   DESCRIPTION
+----------------------------------------- */
+
+.skill-group > p {
+  transition:
+    color 0.3s ease;
+}
+
+
+.skill-group.is-active > p {
+  color: #a8aaa8;
+}
+
+
+/* -----------------------------------------
+   SKILL PILLS
+----------------------------------------- */
+
+.skill-list span {
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.skill-group.is-active
+.skill-list span {
+  border-color:
+    rgba(114, 189, 125, 0.12);
+}
+
+
+/* Individual pill hover */
+
+.skill-list span:hover {
+  color: #72bd7d;
+
+  border-color:
+    rgba(114, 189, 125, 0.3);
+
+  background:
+    rgba(114, 189, 125, 0.045);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .skill-group,
+  .skill-number,
+  .skill-group h3,
+  .skill-group > p,
+  .skill-list span,
+  .skill-group::before,
+  .skill-group::after {
+    transition: none;
+  }
+
+  .skill-group.is-active,
+  .skill-group.is-active h3,
+  .skill-group.is-active .skill-number,
+  .skill-list span:hover {
+    transform: none;
+  }
+}
+@media (max-width: 768px) {
+
+  .skills-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .skill-group {
+    width: 100%;
+  }
+
+  .skill-list {
+    gap: 7px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .skills-section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .skill-group {
+    padding: 22px;
+  }
+
+  .skill-group h3 {
+    font-size: 19px;
+  }
+
+  .skill-group > p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .skill-list {
+    gap: 6px;
+  }
+
+  .skill-list span {
+    font-size: 10px;
+    padding: 6px 8px;
   }
 
 }

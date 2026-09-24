@@ -1,54 +1,4 @@
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(12px);
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-
-  padding: 20px 30px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  color: white;
-  text-decoration: none;
-
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-}
-
-.nav-links a {
-  color: #b8b8b8;
-  text-decoration: none;
-
-  font-size: 14px;
-
-  transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: white;
-}
-.navbar {
 
   position: fixed;
 
@@ -60,22 +10,56 @@
 
   z-index: 1000;
 
-  background: rgba(10, 10, 10, 0.85);
+  background:
+    rgba(10, 10, 10, 0.78);
 
-  backdrop-filter: blur(12px);
+  backdrop-filter:
+    blur(12px);
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter:
+    blur(12px);
 
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 
+/* Navbar after scrolling */
+
+.navbar.scrolled {
+
+  background:
+    rgba(7, 7, 7, 0.94);
+
+  border-bottom-color:
+    rgba(255, 255, 255, 0.09);
+
+  box-shadow:
+    0 8px 30px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+/* ========================================= */
+/* CONTAINER                                 */
+/* ========================================= */
+
 .navbar-container {
+
+  position: relative;
 
   max-width: 1200px;
 
   margin: 0 auto;
 
-  padding: 20px 30px;
+  padding:
+    20px 30px;
 
   display: flex;
 
@@ -83,27 +67,55 @@
 
   justify-content: space-between;
 
+  transition:
+    padding 0.3s ease;
 }
 
 
+.navbar.scrolled
+.navbar-container {
+
+  padding-top: 15px;
+
+  padding-bottom: 15px;
+}
+
+
+/* ========================================= */
+/* LOGO                                      */
+/* ========================================= */
+
 .logo {
-
-  color: white;
-
-  text-decoration: none;
-
-  font-size: 20px;
-
-  font-weight: 700;
-
-  letter-spacing: 2px;
 
   position: relative;
 
   z-index: 1002;
 
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  transition:
+    color 0.25s ease;
 }
 
+
+.logo:hover {
+
+  color: #72bd7d;
+
+}
+
+
+/* ========================================= */
+/* NAV LINKS                                 */
+/* ========================================= */
 
 .nav-links {
 
@@ -116,25 +128,153 @@
 
 .nav-links a {
 
-  color: #b8b8b8;
+  position: relative;
+
+  display: block;
+
+  padding:
+    5px 0;
+
+  color: #8d8d8d;
 
   text-decoration: none;
 
   font-size: 14px;
 
-  transition: color 0.2s ease;
-
+  transition:
+    color 0.25s ease;
 }
 
+
+/* Hover */
 
 .nav-links a:hover {
 
-  color: white;
+  color: #eeeeee;
 
 }
 
 
-/* Mobile menu button */
+/* Active */
+
+.nav-links a.active {
+
+  color: #eeeeee;
+
+}
+
+
+/* Active line */
+
+.nav-links a::after {
+
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -4px;
+
+  width: 0;
+
+  height: 1px;
+
+  background: #72bd7d;
+
+  box-shadow:
+    0 0 7px
+    rgba(95, 189, 109, 0.3);
+
+  transition:
+    width 0.25s ease;
+}
+
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+
+  width: 100%;
+
+}
+
+
+/* Tiny active dot */
+
+.nav-links a.active::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 1px;
+
+  right: -7px;
+
+  width: 3px;
+
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #72bd7d;
+
+  box-shadow:
+    0 0 6px
+    rgba(95, 189, 109, 0.45);
+
+}
+
+
+/* ========================================= */
+/* SCROLL PROGRESS                           */
+/* ========================================= */
+
+/* =========================================
+   SCROLL PROGRESS
+========================================= */
+
+.scroll-progress {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 20;
+}
+
+.scroll-progress-bar {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 0%;
+  height: 100%;
+
+  background: #72bd7d;
+
+  box-shadow:
+    0 0 6px rgba(114, 189, 125, 0.35);
+
+  transition: none;
+
+  will-change: width;
+}
+
+
+/* ========================================= */
+/* MOBILE MENU BUTTON                        */
+/* ========================================= */
 
 .menu-toggle {
 
@@ -150,12 +290,11 @@
 
   background: transparent;
 
-  cursor: pointer;
+  cursor: none;
 
   position: relative;
 
   z-index: 1002;
-
 }
 
 
@@ -169,45 +308,72 @@
 
   margin: 5px auto;
 
-  background: white;
+  background: #ffffff;
 
   transition:
     transform 0.3s ease,
-    opacity 0.3s ease;
+    opacity 0.3s ease,
+    background 0.2s ease;
+}
+
+
+.menu-toggle:hover span {
+
+  background: #72bd7d;
 
 }
 
 
 /* Hamburger → X */
 
-.menu-toggle.active span:nth-child(1) {
+.menu-toggle.active
+span:nth-child(1) {
 
-  transform: translateY(7px) rotate(45deg);
+  transform:
+    translateY(7px)
+    rotate(45deg);
 
 }
 
 
-.menu-toggle.active span:nth-child(2) {
+.menu-toggle.active
+span:nth-child(2) {
 
   opacity: 0;
 
 }
 
 
-.menu-toggle.active span:nth-child(3) {
+.menu-toggle.active
+span:nth-child(3) {
 
-  transform: translateY(-7px) rotate(-45deg);
+  transform:
+    translateY(-7px)
+    rotate(-45deg);
 
 }
 
 
-/* Mobile */
+/* ========================================= */
+/* MOBILE                                    */
+/* ========================================= */
 
 @media (max-width: 768px) {
 
   .navbar-container {
 
-    padding: 16px 20px;
+    padding:
+      16px 20px;
+
+  }
+
+
+  .navbar.scrolled
+  .navbar-container {
+
+    padding-top: 13px;
+
+    padding-bottom: 13px;
 
   }
 
@@ -229,7 +395,9 @@
 
     width: 100%;
 
-    padding: 20px;
+    box-sizing: border-box;
+
+    padding: 15px 20px 20px;
 
     display: flex;
 
@@ -237,13 +405,21 @@
 
     gap: 0;
 
-    background: rgba(10, 10, 10, 0.97);
+    background:
+      rgba(10, 10, 10, 0.97);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter:
+      blur(12px);
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter:
+      blur(12px);
 
-    transform: translateY(-20px);
+    border-bottom:
+      1px solid
+      rgba(255, 255, 255, 0.08);
+
+    transform:
+      translateY(-15px);
 
     opacity: 0;
 
@@ -261,7 +437,8 @@
 
   .nav-links.mobile-open {
 
-    transform: translateY(0);
+    transform:
+      translateY(0);
 
     opacity: 1;
 
@@ -274,11 +451,14 @@
 
   .nav-links a {
 
-    padding: 16px 10px;
+    padding:
+      15px 10px;
 
     font-size: 15px;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom:
+      1px solid
+      rgba(255, 255, 255, 0.06);
 
   }
 
@@ -287,6 +467,224 @@
 
     border-bottom: none;
 
+  }
+
+
+  /*
+   * On mobile, use a left indicator
+   * instead of the desktop underline.
+   */
+
+  .nav-links a::after {
+
+    left: -20px;
+
+    top: 50%;
+
+    bottom: auto;
+
+    width: 2px;
+
+    height: 0;
+
+    transform:
+      translateY(-50%);
+
+  }
+
+
+  .nav-links a:hover::after,
+  .nav-links a.active::after {
+
+    width: 2px;
+
+    height: 22px;
+
+  }
+
+
+  .nav-links a.active::before {
+
+    top: 50%;
+
+    right: 10px;
+
+    transform:
+      translateY(-50%);
+
+  }
+
+}
+
+
+/* ========================================= */
+/* REDUCED MOTION                            */
+/* ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .navbar,
+  .navbar-container,
+  .nav-links,
+  .nav-links a,
+  .nav-links a::after {
+
+    transition: none;
+
+  }
+
+
+  .scroll-progress-bar {
+
+    transition: none;
+
+  }
+
+}
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 0;
+  }
+
+  .navbar-container {
+    height: 68px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    width: 38px;
+    height: 38px;
+
+    padding: 8px;
+
+    border: 1px solid
+      rgba(255, 255, 255, 0.08);
+
+    background: rgba(255, 255, 255, 0.02);
+
+    border-radius: 6px;
+  }
+
+  .menu-toggle span {
+    display: block;
+
+    width: 100%;
+    height: 1px;
+
+    background: #aaa;
+
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease,
+      background 0.25s ease;
+  }
+
+  .menu-toggle:hover span {
+    background: #72bd7d;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .nav-links {
+    position: absolute;
+
+    top: 68px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px 20px 18px;
+
+    background:
+      rgba(8, 8, 8, 0.96);
+
+    backdrop-filter: blur(14px);
+
+    border-bottom:
+      1px solid
+      rgba(255, 255, 255, 0.06);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-8px);
+
+    pointer-events: none;
+
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .nav-links.mobile-open {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    width: 100%;
+
+    padding: 13px 4px;
+
+    border-bottom:
+      1px solid
+      rgba(255, 255, 255, 0.04);
+
+    font-size: 13px;
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a.active::after {
+    left: 4px;
+    bottom: 5px;
+    width: 20px;
+  }
+
+  .scroll-progress {
+    height: 2px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .navbar-container {
+    padding: 0 16px;
+  }
+
+  .nav-links {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
 }

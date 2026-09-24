@@ -2,41 +2,61 @@
 
   <div class="navbar-container">
 
-    <a href="#home" class="logo">
-      UDAYKIRAN
-    </a>
-
-    <!-- Desktop / Mobile Navigation -->
+    <a
+  href="#"
+  class="logo"
+  [class.active]="activeSection() === 'home'"
+  (click)="$event.preventDefault(); goHome()"
+>
+  UDAYKIRAN
+</a>
 
     <div
       class="nav-links"
       [class.mobile-open]="isMenuOpen"
     >
 
-      <a href="#about" (click)="closeMenu()">
+      <a
+        href="#about"
+        [class.active]="activeSection() === 'about'"
+        (click)="setActiveSection('about')"
+      >
         About
       </a>
 
-      <a href="#experience" (click)="closeMenu()">
+      <a
+        href="#experience"
+        [class.active]="activeSection() === 'experience'"
+        (click)="setActiveSection('experience')"
+      >
         Experience
       </a>
 
-      <a href="#projects" (click)="closeMenu()">
+      <a
+        href="#projects"
+        [class.active]="activeSection() === 'projects'"
+        (click)="setActiveSection('projects')"
+      >
         Projects
       </a>
 
-      <a href="#skills" (click)="closeMenu()">
+      <a
+        href="#skills"
+        [class.active]="activeSection() === 'skills'"
+        (click)="setActiveSection('skills')"
+      >
         Skills
       </a>
 
-      <a href="#contact" (click)="closeMenu()">
+      <a
+        href="#contact"
+        [class.active]="activeSection() === 'contact'"
+        (click)="setActiveSection('contact')"
+      >
         Contact
       </a>
 
     </div>
-
-
-    <!-- Mobile Menu Button -->
 
     <button
       type="button"
@@ -46,13 +66,18 @@
       aria-label="Toggle navigation menu"
       [attr.aria-expanded]="isMenuOpen"
     >
-
       <span></span>
       <span></span>
       <span></span>
-
     </button>
 
+  </div>
+
+  <div class="scroll-progress">
+    <div
+      #progressBar
+      class="scroll-progress-bar"
+    ></div>
   </div>
 
 </nav>

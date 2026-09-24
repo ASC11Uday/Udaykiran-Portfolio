@@ -1,10 +1,23 @@
-<section class="contact-section" id="contact">
+<section
+  class="contact-section"
+  id="contact"
+>
 
   <div class="section-container">
 
-    <div class="contact-intro">
+    <!-- =========================================
+         INTRO
+    ========================================== -->
 
-      <p class="eyebrow">GET IN TOUCH</p>
+    <div
+      class="contact-intro"
+      appScrollReveal
+      style="--reveal-delay: 0ms"
+    >
+
+      <p class="eyebrow">
+        GET IN TOUCH
+      </p>
 
       <h2>
         Let's build something
@@ -12,15 +25,30 @@
       </h2>
 
       <p class="contact-description">
-        Have a project, opportunity, or idea you'd like to discuss?
+        Have a project, opportunity, or idea
+        you'd like to discuss?
         Send me a message and I'll get back to you.
       </p>
 
     </div>
 
+
+    <!-- =========================================
+         CONTACT GRID
+    ========================================== -->
+
     <div class="contact-grid">
 
-      <div class="contact-info">
+
+      <!-- =====================================
+           CONTACT INFORMATION
+      ====================================== -->
+
+      <div
+        class="contact-info"
+        appScrollReveal
+        style="--reveal-delay: 150ms"
+      >
 
         <div class="contact-item">
 
@@ -28,11 +56,14 @@
             EMAIL
           </span>
 
-          <a href="mailto:YOUR_EMAIL@example.com">
+          <a
+            href="mailto:YOUR_EMAIL@example.com"
+          >
             YOUR_EMAIL@example.com
           </a>
 
         </div>
+
 
         <div class="contact-item">
 
@@ -43,11 +74,13 @@
           <a
             href="https://www.linkedin.com/"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             LinkedIn
           </a>
 
         </div>
+
 
         <div class="contact-item">
 
@@ -58,7 +91,8 @@
           <a
             href="https://github.com/"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             GitHub
           </a>
 
@@ -67,117 +101,264 @@
       </div>
 
 
-      <form
-  class="contact-form"
-  [formGroup]="contactForm"
-  (ngSubmit)="onSubmit()"
-  novalidate
->
+      <!-- =====================================
+           FLIP CARD
+      ====================================== -->
 
-  <div class="form-group">
+      <div
+        class="contact-card"
+        appScrollReveal
+        style="--reveal-delay: 250ms"
+        [class.is-sent]="isSent"
+      >
 
-    <label for="name">Name</label>
-
-    <input
-      id="name"
-      type="text"
-      formControlName="name"
-      placeholder="Your name"
-    />
-
-    @if (
-      contactForm.controls.name.touched &&
-      contactForm.controls.name.invalid
-    ) {
-      <small class="form-error">
-        @if (contactForm.controls.name.errors?.['required']) {
-          Name is required.
-        }
-
-        @if (contactForm.controls.name.errors?.['minlength']) {
-          Name must be at least 2 characters.
-        }
-      </small>
-    }
-
-  </div>
+        <div class="contact-card-inner">
 
 
-  <div class="form-group">
+          <!-- =================================
+               FRONT : CONTACT FORM
+          ================================== -->
 
-    <label for="email">Email</label>
+          <div
+            class="contact-card-face contact-card-front"
+          >
 
-    <input
-      id="email"
-      type="email"
-      formControlName="email"
-      placeholder="you@example.com"
-    />
-
-    @if (
-      contactForm.controls.email.touched &&
-      contactForm.controls.email.invalid
-    ) {
-      <small class="form-error">
-        Please enter a valid email address.
-      </small>
-    }
-
-  </div>
+            <form
+              class="contact-form"
+              [formGroup]="contactForm"
+              (ngSubmit)="onSubmit()"
+              novalidate
+            >
 
 
-  <div class="form-group">
+              <!-- NAME -->
 
-    <label for="message">Message</label>
+              <div class="form-group">
 
-    <textarea
-      id="message"
-      rows="6"
-      formControlName="message"
-      placeholder="Tell me about your project..."
-    ></textarea>
+                <label for="name">
+                  Name
+                </label>
 
-    @if (
-      contactForm.controls.message.touched &&
-      contactForm.controls.message.invalid
-    ) {
-      <small class="form-error">
-        Message must be at least 10 characters.
-      </small>
-    }
+                <input
+                  id="name"
+                  type="text"
+                  formControlName="name"
+                  placeholder="Your name"
+                />
 
-  </div>
+                @if (
+                  contactForm.controls.name.touched &&
+                  contactForm.controls.name.invalid
+                ) {
 
+                  <small class="form-error">
 
-  <button
-    type="submit"
-    class="submit-button"
-    [disabled]="isSubmitting"
-  >
+                    @if (
+                      contactForm.controls.name.errors?.['required']
+                    ) {
+                      Name is required.
+                    }
 
-    {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                    @if (
+                      contactForm.controls.name.errors?.['minlength']
+                    ) {
+                      Name must be at least 2 characters.
+                    }
 
-    @if (!isSubmitting) {
-      <span>↗</span>
-    }
+                  </small>
 
-  </button>
+                }
 
-
-  @if (successMessage) {
-    <p class="form-success">
-      {{ successMessage }}
-    </p>
-  }
+              </div>
 
 
-  @if (errorMessage) {
-    <p class="form-error">
-      {{ errorMessage }}
-    </p>
-  }
+              <!-- EMAIL -->
 
-</form>
+              <div class="form-group">
+
+                <label for="email">
+                  Email
+                </label>
+
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  placeholder="you@example.com"
+                />
+
+                @if (
+                  contactForm.controls.email.touched &&
+                  contactForm.controls.email.invalid
+                ) {
+
+                  <small class="form-error">
+                    Please enter a valid email address.
+                  </small>
+
+                }
+
+              </div>
+
+
+              <!-- MESSAGE -->
+
+              <div class="form-group">
+
+                <label for="message">
+                  Message
+                </label>
+
+                <textarea
+                  id="message"
+                  rows="6"
+                  formControlName="message"
+                  placeholder="Tell me about your project..."
+                ></textarea>
+
+                @if (
+                  contactForm.controls.message.touched &&
+                  contactForm.controls.message.invalid
+                ) {
+
+                  <small class="form-error">
+                    Message must be at least 10 characters.
+                  </small>
+
+                }
+
+              </div>
+
+
+              <!-- SEND BUTTON -->
+
+              <button
+                type="submit"
+                class="submit-button"
+                [disabled]="isSubmitting"
+              >
+
+                <span class="submit-text">
+
+                  {{
+                    isSubmitting
+                      ? 'TRANSMITTING...'
+                      : 'SEND MESSAGE'
+                  }}
+
+                </span>
+
+
+                @if (!isSubmitting) {
+
+                  <span class="submit-arrow">
+                    ↗
+                  </span>
+
+                }
+
+
+                @if (isSubmitting) {
+
+                  <span class="submit-loader"></span>
+
+                }
+
+              </button>
+
+
+              <!-- ERROR -->
+
+              @if (errorMessage) {
+
+                <p class="form-error form-submit-error">
+                  {{ errorMessage }}
+                </p>
+
+              }
+
+            </form>
+
+          </div>
+
+
+          <!-- =================================
+               BACK : SUCCESS
+          ================================== -->
+
+          <div
+            class="contact-card-face contact-card-back"
+          >
+
+            <div class="success-content">
+
+
+              <!-- Status indicator -->
+
+              <div class="success-indicator">
+
+                <span class="success-check">
+                  ✓
+                </span>
+
+              </div>
+
+
+              <!-- Terminal status -->
+
+              <p class="success-label">
+                TRANSMISSION COMPLETE
+              </p>
+
+
+              <h3>
+                Message sent.
+              </h3>
+
+
+              <p class="success-description">
+                Your message has successfully
+                reached my inbox.
+              </p>
+
+
+              <div class="terminal-status">
+
+                <span class="terminal-dot"></span>
+
+                <span>
+                  CONNECTION CLOSED
+                </span>
+
+              </div>
+
+
+              <!-- Send another -->
+
+              <button
+                type="button"
+                class="another-message-button"
+                (click)="sendAnotherMessage()"
+              >
+
+                <span>
+                  SEND ANOTHER MESSAGE
+                </span>
+
+                <span class="another-arrow">
+                  ↗
+                </span>
+
+              </button>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 

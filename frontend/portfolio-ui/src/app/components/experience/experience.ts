@@ -9,10 +9,11 @@ import {
   ExperienceData,
   ExperienceService
 } from '../../services/experience.service';
+import { ScrollRevealDirective } from '../../shared/scroll-reveal.directive';
 
 @Component({
   selector: 'app-experience',
-  imports: [],
+  imports: [ScrollRevealDirective],
   templateUrl: './experience.html',
   styleUrl: './experience.scss'
 })
@@ -40,8 +41,6 @@ export class Experience implements OnInit {
 
       next: (data) => {
 
-        console.log('Experiences received:', data);
-
         this.experiences.set(data);
 
         this.isLoading.set(false);
@@ -64,5 +63,17 @@ export class Experience implements OnInit {
       }
 
     });
+  }
+
+  onExperienceEnter(item: HTMLElement): void {
+
+    item.classList.add('is-active');
+
+  }
+
+  onExperienceLeave(item: HTMLElement): void {
+
+    item.classList.remove('is-active');
+
   }
 }

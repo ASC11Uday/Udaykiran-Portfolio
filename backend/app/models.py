@@ -37,10 +37,7 @@ class Contact(Base):
 class Project(Base):
     __tablename__ = "projects"
 
-    id: Mapped[int] = mapped_column(
-        primary_key=True,
-        autoincrement=True
-    )
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
     title: Mapped[str] = mapped_column(
         String(200),
@@ -75,6 +72,21 @@ class Project(Base):
 
     featured: Mapped[bool] = mapped_column(
         default=False,
+        nullable=False
+    )
+
+    overview: Mapped[str] = mapped_column(
+        Text,
+        nullable=False
+    )
+
+    contribution: Mapped[str] = mapped_column(
+        Text,
+        nullable=False
+    )
+
+    highlights: Mapped[str] = mapped_column(
+        Text,
         nullable=False
     )
 

@@ -50,6 +50,8 @@ h2 span {
 }
 
 
+/* Experience timeline */
+
 .experience-list {
   position: relative;
 
@@ -87,6 +89,9 @@ h2 span {
   padding: 0 0 80px;
 
   margin-bottom: 20px;
+
+  transition:
+    transform 0.3s ease;
 }
 
 
@@ -94,6 +99,53 @@ h2 span {
   padding-bottom: 0;
 }
 
+
+/* Timeline activation point */
+
+.experience-item::before {
+  content: '';
+
+  position: absolute;
+
+  left: 89px;
+
+  top: 20px;
+
+  width: 13px;
+  height: 13px;
+
+  border-radius: 50%;
+
+  background: #080808;
+
+  border: 1px solid #333333;
+
+  z-index: 2;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.experience-item.is-active {
+  transform: translateX(5px);
+}
+
+
+.experience-item.is-active::before {
+  background: #00ff41;
+
+  border-color: #00ff41;
+
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, 0.6),
+    0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+
+/* Experience meta */
 
 .experience-meta {
   display: flex;
@@ -129,6 +181,22 @@ h2 span {
   font-family: monospace;
 
   font-size: 12px;
+
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.experience-item.is-active .experience-number {
+  border-color: rgba(0, 255, 65, 0.75);
+
+  color: #00ff41;
+
+  box-shadow:
+    0 0 12px rgba(0, 255, 65, 0.18),
+    inset 0 0 8px rgba(0, 255, 65, 0.05);
 }
 
 
@@ -140,6 +208,8 @@ h2 span {
   letter-spacing: 1px;
 }
 
+
+/* Experience content */
 
 .experience-content {
   padding: 5px 0;
@@ -160,11 +230,21 @@ h2 span {
 .experience-content h4 {
   margin: 8px 0 22px;
 
-  color: #8d7cff;
+  color: #00ff41;
 
   font-size: 15px;
 
   font-weight: 500;
+
+  transition:
+    text-shadow 0.3s ease;
+}
+
+
+.experience-item.is-active
+.experience-content h4 {
+  text-shadow:
+    0 0 10px rgba(0, 255, 65, 0.25);
 }
 
 
@@ -180,6 +260,8 @@ h2 span {
   line-height: 1.8;
 }
 
+
+/* Technology tags */
 
 .experience-tags {
   display: flex;
@@ -240,6 +322,11 @@ h2 span {
   }
 
 
+  .experience-item::before {
+    left: 69px;
+  }
+
+
   .experience-content h3 {
     font-size: 25px;
   }
@@ -284,6 +371,11 @@ h2 span {
   }
 
 
+  .experience-item::before {
+    display: none;
+  }
+
+
   .experience-item {
     grid-template-columns: 1fr;
 
@@ -297,6 +389,11 @@ h2 span {
 
   .experience-item:last-child {
     padding-bottom: 0;
+  }
+
+
+  .experience-item.is-active {
+    transform: translateY(-3px);
   }
 
 
@@ -374,6 +471,7 @@ h2 span {
 
   .experience-section {
     padding-left: 16px;
+
     padding-right: 16px;
   }
 
@@ -385,6 +483,67 @@ h2 span {
 
   .experience-content h3 {
     font-size: 21px;
+  }
+
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .experience-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .experience-list {
+    width: 100%;
+  }
+
+  .experience-item {
+    grid-template-columns: 1fr;
+    gap: 18px;
+
+    padding: 25px 0;
+  }
+
+  .experience-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .experience-content {
+    max-width: 100%;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .experience-section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .experience-item {
+    padding: 22px 0;
+  }
+
+  .experience-meta {
+    font-size: 11px;
+  }
+
+  .experience-content h3 {
+    font-size: 19px;
+  }
+
+  .experience-content p {
+    font-size: 13px;
+    line-height: 1.7;
   }
 
 }

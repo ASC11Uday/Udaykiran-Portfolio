@@ -1,12 +1,23 @@
-<section class="projects-section" id="projects">
+<section
+  class="projects-section"
+  id="projects"
+>
 
   <div class="section-container">
 
-    <!-- Section Heading -->
+    <!-- =========================================
+         SECTION HEADING
+    ========================================== -->
 
-    <div class="section-heading">
+    <div
+      class="section-heading"
+      appScrollReveal
+      style="--reveal-delay: 0ms"
+    >
 
-      <p class="eyebrow">SELECTED WORK</p>
+      <p class="eyebrow">
+        SELECTED WORK
+      </p>
 
       <h2>
         Projects that combine
@@ -16,26 +27,36 @@
     </div>
 
 
-    <!-- Loading -->
+    <!-- =========================================
+         LOADING
+    ========================================== -->
 
     @if (isLoading()) {
 
       <div class="projects-state">
 
-        <p>Loading projects...</p>
+        <p>
+          Loading projects...
+        </p>
 
       </div>
 
     }
 
 
-    <!-- Error -->
+    <!-- =========================================
+         ERROR
+    ========================================== -->
 
     @else if (errorMessage()) {
 
-      <div class="projects-state projects-error">
+      <div
+        class="projects-state projects-error"
+      >
 
-        <p>{{ errorMessage() }}</p>
+        <p>
+          {{ errorMessage() }}
+        </p>
 
         <button
           type="button"
@@ -49,135 +70,269 @@
     }
 
 
-    <!-- Empty -->
+    <!-- =========================================
+         EMPTY
+    ========================================== -->
 
     @else if (projects().length === 0) {
 
       <div class="projects-state">
 
-        <p>No projects found.</p>
+        <p>
+          No projects found.
+        </p>
 
       </div>
 
     }
 
 
-    <!-- Projects -->
+    <!-- =========================================
+         PROJECTS
+    ========================================== -->
 
     @else {
 
       <div class="projects-grid">
 
-        @for (project of projects(); track project.id) {
+        @for (
+          project of projects();
+          track project.id;
+          let i = $index
+        ) {
 
-          <article
-            class="project-card"
-            [class.featured]="project.featured"
+          <!-- SCROLL REVEAL ONLY -->
+
+          <div
+            class="project-card-reveal"
+            appScrollReveal
+            [style.--reveal-delay]="
+              (150 + (i * 120)) + 'ms'
+            "
           >
 
-            <!-- Project Header -->
+            <!-- ACTUAL CARD -->
 
-            <div class="project-top">
+            <article
+              class="project-card"
+              [class.featured]="project.featured"
+              [class.is-flipped]="
+                isProjectFlipped(project.id)
+              "
+              [attr.data-project-id]="project.id"
+              (mousemove)="
+                onCardMove(
+                  $event,
+                  $any($event.currentTarget)
+                )
+              "
+              (mouseleave)="
+                onCardLeave(
+                  $any($event.currentTarget)
+                )
+              "
+            >
 
-              <span class="project-number">
+              <!-- =================================
+                   FRONT
+              ================================== -->
 
-                {{ project.id.toString().padStart(2, '0') }}
+              <div
+                class="project-card-face project-card-front"
+                (click)="
+                  toggleProjectCard(project.id)
+                "
+              >
 
-              </span>
+                <div class="project-top">
 
-              <span class="project-type">
+                  <span class="project-number">
+                    {{
+                      project.id
+                        .toString()
+                        .padStart(2, '0')
+                    }}
+                  </span>
 
-                {{ project.type }}
+                  <span class="project-type">
+                    {{ project.type }}
+                  </span>
 
-              </span>
-
-            </div>
-
-
-            <!-- Project Title -->
-
-            <h3>
-
-              {{ project.title }}
-
-            </h3>
-
-
-            <!-- Project Description -->
-
-            <p>
-
-              {{ project.description }}
-
-            </p>
+                </div>
 
 
-            <!-- Technology Tags -->
+                <h3>
+                  {{ project.title }}
+                </h3>
 
-            <div class="project-tags">
 
-              @for (
-                technology of project.technologies;
-                track technology
-              ) {
+                <p>
+                  {{ project.description }}
+                </p>
 
-                <span>
 
-                  {{ technology }}
+                <div class="project-tags">
 
+                  @for (
+                    technology of project.technologies;
+                    track technology
+                  ) {
+
+                    <span>
+                      {{ technology }}
+                    </span>
+
+                  }
+
+                </div>
+
+
+                <div class="project-footer">
+
+                  <span>
+                    {{ project.category }}
+                  </span>
+
+
+                  @if (
+                    project.github &&
+                    project.github !== '#'
+                  ) {
+
+                    <a
+                      [href]="project.github"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="arrow"
+                      aria-label="View project on GitHub"
+                      (click)="$event.stopPropagation()"
+                    >
+                      ↗
+                    </a>
+
+                  }
+
+                  @else {
+
+                    <span
+                      class="arrow"
+                      aria-hidden="true"
+                    >
+                      ↗
+                    </span>
+
+                  }
+
+                </div>
+
+
+                <span class="project-click-hint">
+                  CLICK TO VIEW DETAILS
                 </span>
 
-              }
-
-            </div>
+              </div>
 
 
-            <!-- Footer -->
+              <!-- =================================
+                   BACK
+              ================================== -->
 
-            <div class="project-footer">
+              <div
+                class="project-card-face project-card-back"
+                (click)="
+                  toggleProjectCard(project.id)
+                "
+              >
 
-              <span>
+                <div class="project-back-top">
 
-                {{ project.category }}
+                  <span class="project-type">
+                    PROJECT DETAILS
+                  </span>
 
-              </span>
+                  <button
+                    type="button"
+                    class="project-close"
+                    aria-label="Close project details"
+                    (click)="
+                      $event.stopPropagation();
+                      toggleProjectCard(project.id)
+                    "
+                  >
+                    ×
+                  </button>
+
+                </div>
 
 
-              @if (
-                project.github &&
-                project.github !== '#'
-              ) {
+                <h3>
+                  {{ project.title }}
+                </h3>
 
-                <a
-                  [href]="project.github"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="arrow"
-                  aria-label="View project on GitHub"
-                >
 
-                  ↗
+                <div class="project-detail">
 
-                </a>
+                  <span class="project-detail-label">
+                    OVERVIEW
+                  </span>
 
-              }
+                  <p>
+                    {{ project.overview }}
+                  </p>
 
-              @else {
+                </div>
 
-                <span
-                  class="arrow"
-                  aria-hidden="true"
-                >
 
-                  ↗
+                <div class="project-detail">
 
-                </span>
+                  <span class="project-detail-label">
+                    MY CONTRIBUTION
+                  </span>
 
-              }
+                  <p>
+                    {{ project.contribution }}
+                  </p>
 
-            </div>
+                </div>
 
-          </article>
+
+                <div class="project-detail">
+
+                  <span class="project-detail-label">
+                    HIGHLIGHTS
+                  </span>
+
+                  <ul>
+
+                    @for (
+                      highlight of project.highlights;
+                      track highlight
+                    ) {
+
+                      <li>
+                        {{ highlight }}
+                      </li>
+
+                    }
+
+                  </ul>
+
+                </div>
+
+
+                <div class="project-back-footer">
+
+                  <span class="project-back-arrow">
+                    ↻
+                  </span>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          </div>
 
         }
 

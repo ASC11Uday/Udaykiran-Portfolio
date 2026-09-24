@@ -1,3 +1,7 @@
+/* =========================================
+   PROJECTS SECTION
+========================================= */
+
 .projects-section {
   padding: 140px 30px;
 
@@ -37,7 +41,8 @@
 h2 {
   margin: 0;
 
-  font-size: clamp(40px, 5vw, 68px);
+  font-size:
+    clamp(40px, 5vw, 68px);
 
   line-height: 1.1;
 
@@ -50,7 +55,9 @@ h2 span {
 }
 
 
-/* Projects */
+/* =========================================
+   PROJECT GRID
+========================================= */
 
 .projects-grid {
   display: grid;
@@ -62,58 +69,80 @@ h2 span {
 }
 
 
-.project-card {
+/* =========================================
+   SCROLL REVEAL WRAPPER
+========================================= */
+
+.project-card-reveal {
   position: relative;
+
+  width: 100%;
 
   min-height: 430px;
 
-  padding: 32px;
+  /*
+   * Perspective belongs here.
+   * This wrapper is responsible only
+   * for the 3D viewing distance.
+   */
+  perspective: 1200px;
+}
 
-  display: flex;
 
-  flex-direction: column;
+/* =========================================
+   PROJECT CARD
+========================================= */
 
-  border: 1px solid #252525;
+.project-card {
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  min-height: 430px;
+
+  box-sizing: border-box;
+
+  padding: 0;
+
+  border:
+    1px solid
+    #252525;
 
   border-radius: 16px;
 
   background: #101010;
 
-  overflow: hidden;
+  /*
+   * IMPORTANT:
+   * Do NOT use overflow:hidden here.
+   *
+   * The card is the 3D object.
+   * overflow:hidden can interfere with
+   * preserve-3d rendering.
+   */
+  overflow: visible;
+
+  transform-style: preserve-3d;
 
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease;
+    transform 0.7s cubic-bezier(
+      0.22,
+      0.61,
+      0.36,
+      1
+    ),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  cursor: none;
 }
 
 
-.project-card::before {
-  content: '';
-
-  position: absolute;
-
-  width: 250px;
-  height: 250px;
-
-  top: -130px;
-  right: -100px;
-
-  border-radius: 50%;
-
-  background: rgba(141, 124, 255, 0.08);
-
-  filter: blur(20px);
-
-  pointer-events: none;
-}
-
-
-.project-card:hover {
-  transform: translateY(-8px);
-
-  border-color: #444444;
-}
-
+/* =========================================
+   FEATURED CARD
+========================================= */
 
 .project-card.featured {
   background:
@@ -125,7 +154,176 @@ h2 span {
 }
 
 
-/* Project header */
+/* =========================================
+   MOUSE REACTIVE GREEN GLOW
+========================================= */
+/* =========================================
+   MOUSE REACTIVE GREEN GLOW
+========================================= */
+
+.project-card-front {
+  position: absolute;
+
+  overflow: hidden;
+}
+
+
+.project-card-front::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle 180px at
+      var(--mouse-x, 50%)
+      var(--mouse-y, 50%),
+      rgba(0, 255, 65, 0.10),
+      transparent 70%
+    );
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease;
+
+  z-index: 0;
+}
+
+
+.project-card:not(.is-flipped):hover
+.project-card-front::before {
+  opacity: 1;
+}
+
+.project-card-front > * {
+  position: relative;
+
+  z-index: 1;
+}
+
+/* =========================================
+   HOVER STATE
+========================================= */
+
+.project-card:not(.is-flipped):hover {
+  border-color:
+    rgba(0, 255, 65, 0.28);
+
+  box-shadow:
+    0 12px 35px
+    rgba(0, 0, 0, 0.35),
+
+    0 0 25px
+    rgba(0, 255, 65, 0.04);
+}
+
+
+/* =========================================
+   FLIP STATE
+========================================= */
+
+.project-card.is-flipped {
+  transform:
+    rotateY(180deg);
+}
+
+
+/* =========================================
+   CARD FACES
+========================================= */
+
+.project-card-face {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 32px;
+
+  border-radius: 16px;
+
+  /*
+   * The browser must not show the
+   * backside of either face.
+   */
+  backface-visibility: hidden;
+
+  -webkit-backface-visibility: hidden;
+
+  transform-style: preserve-3d;
+
+  /*
+   * Clipping is safe on the individual
+   * face, not on the 3D parent.
+   */
+  overflow: hidden;
+}
+
+
+/* =========================================
+   FRONT FACE
+========================================= */
+
+.project-card-front {
+  display: flex;
+
+  flex-direction: column;
+
+  background:
+    #101010;
+
+  transform:
+    rotateY(0deg);
+}
+
+
+/* =========================================
+   BACK FACE
+========================================= */
+
+.project-card-back {
+  display: flex;
+
+  flex-direction: column;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(114, 189, 125, 0.045),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  border:
+    1px solid
+    rgba(114, 189, 125, 0.12);
+
+  /*
+   * The back starts rotated away.
+   *
+   * Parent rotates 180deg.
+   *
+   * 180deg + 180deg = 360deg
+   *
+   * Therefore the back becomes readable.
+   */
+  transform:
+    rotateY(180deg);
+}
+
+
+/* =========================================
+   PROJECT HEADER
+========================================= */
 
 .project-top {
   display: flex;
@@ -156,20 +354,30 @@ h2 span {
 }
 
 
-/* Project content */
+/* =========================================
+   PROJECT TITLE
+========================================= */
 
-.project-card h3 {
+.project-card-front h3 {
   margin: 0 0 18px;
+
+  color: #ffffff;
 
   font-size: 30px;
 
   font-weight: 600;
 
   letter-spacing: -1px;
+
+  line-height: 1.2;
 }
 
 
-.project-card > p {
+/* =========================================
+   PROJECT DESCRIPTION
+========================================= */
+
+.project-card-front > p {
   max-width: 520px;
 
   margin: 0;
@@ -182,7 +390,9 @@ h2 span {
 }
 
 
-/* Technology tags */
+/* =========================================
+   TECHNOLOGY TAGS
+========================================= */
 
 .project-tags {
   display: flex;
@@ -196,19 +406,36 @@ h2 span {
 
 
 .project-tags span {
-  padding: 7px 11px;
+  padding:
+    7px 11px;
 
-  border: 1px solid #282828;
+  border:
+    1px solid
+    #282828;
 
   border-radius: 50px;
 
   color: #888888;
 
   font-size: 11px;
+
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 
-/* Footer */
+.project-card-front:hover
+.project-tags span {
+  border-color:
+    rgba(114, 189, 125, 0.18);
+}
+
+
+/* =========================================
+   PROJECT FOOTER
+========================================= */
 
 .project-footer {
   display: flex;
@@ -237,9 +464,12 @@ h2 span {
   justify-content: center;
 
   width: 35px;
+
   height: 35px;
 
-  border: 1px solid #333333;
+  border:
+    1px solid
+    #333333;
 
   border-radius: 50%;
 
@@ -249,25 +479,326 @@ h2 span {
 
   transition:
     transform 0.2s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 
-.project-card:hover .arrow {
-  transform: translate(3px, -3px);
+.project-card-front:hover
+.arrow {
+  transform:
+    translate(3px, -3px);
 
-  background: #ffffff;
+  background:
+    #ffffff;
 
-  color: #000000;
+  color:
+    #000000;
 }
 
 
-/* Loading / error states */
+/* =========================================
+   CLICK HINT
+========================================= */
+
+/* =========================================
+   CLICK HINT
+========================================= */
+
+.project-click-hint {
+  position: absolute;
+
+  left: 80%;
+
+  bottom: 5px;
+
+  transform:
+    translateX(-50%);
+
+  color: #555555;
+
+  font-size: 9px;
+
+  letter-spacing: 1.2px;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    color 0.25s ease;
+}
+
+
+.project-card-front:hover
+.project-click-hint {
+  opacity: 1;
+
+  color: #72bd7d;
+}
+
+
+/* =========================================
+   BACK HEADER
+========================================= */
+
+.project-back-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+
+.project-close {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 28px;
+
+  height: 28px;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  color: #888888;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  cursor: none;
+
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.project-close:hover {
+  color: #72bd7d;
+
+  border-color:
+    rgba(114, 189, 125, 0.3);
+
+  background:
+    rgba(114, 189, 125, 0.06);
+
+  transform:
+    rotate(90deg);
+}
+
+
+/* =========================================
+   BACK TITLE
+========================================= */
+
+.project-card-back h3 {
+  margin: 0 0 22px;
+
+  color: #f4f4f4;
+
+  font-size: 22px;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================
+   BACK DETAILS
+========================================= */
+
+.project-detail {
+  margin-bottom: 18px;
+}
+
+
+.project-detail:last-child {
+  margin-bottom: 0;
+}
+
+
+.project-detail-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #72bd7d;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+
+.project-detail p {
+  margin: 0;
+
+  color: #999999;
+
+  font-size: 12px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================
+   HIGHLIGHTS
+========================================= */
+
+.project-detail ul {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+
+.project-detail li {
+  position: relative;
+
+  padding-left: 14px;
+
+  color: #999999;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+.project-detail li::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+
+  top: 8px;
+
+  width: 4px;
+
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    #72bd7d;
+
+  opacity: 0.7;
+}
+
+/* =========================================
+   BACK ARROW
+========================================= */
+
+
+
+.project-back-footer {
+  position: absolute;
+
+  right: 28px;
+
+  bottom: 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+
+  padding: 0;
+
+  border: none;
+}
+
+
+.project-back-arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.10);
+
+  border-radius: 50%;
+
+  color: #aaaaaa;
+
+  font-size: 17px;
+
+  line-height: 1;
+
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.project-card-back:hover
+.project-back-arrow {
+  color: #72bd7d;
+
+  border-color:
+    rgba(114, 189, 125, 0.30);
+
+  background:
+    rgba(114, 189, 125, 0.05);
+
+  transform:
+    rotate(-45deg);
+}
+
+
+
+/* =========================================
+   LOADING / ERROR
+========================================= */
 
 .projects-state {
-  text-align: center;
-
   padding: 2rem;
+
+  text-align: center;
 
   opacity: 0.7;
 }
@@ -278,12 +809,15 @@ h2 span {
 }
 
 
-/* Tablet */
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 900px) {
 
   .projects-section {
-    padding: 110px 30px;
+    padding:
+      110px 30px;
   }
 
 
@@ -297,9 +831,13 @@ h2 span {
   }
 
 
+  .project-card-reveal,
   .project-card {
     min-height: 400px;
+  }
 
+
+  .project-card-face {
     padding: 28px;
   }
 
@@ -309,19 +847,22 @@ h2 span {
   }
 
 
-  .project-card h3 {
+  .project-card-front h3 {
     font-size: 27px;
   }
 
 }
 
 
-/* Mobile */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 700px) {
 
   .projects-section {
-    padding: 90px 20px;
+    padding:
+      90px 20px;
   }
 
 
@@ -340,7 +881,8 @@ h2 span {
 
 
   h2 {
-    font-size: clamp(38px, 11vw, 50px);
+    font-size:
+      clamp(38px, 11vw, 50px);
 
     line-height: 1.06;
 
@@ -349,23 +891,21 @@ h2 span {
 
 
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
 
     gap: 16px;
   }
 
 
+  .project-card-reveal,
   .project-card {
     min-height: 390px;
-
-    padding: 24px;
-
-    border-radius: 14px;
   }
 
 
-  .project-card:hover {
-    transform: translateY(-4px);
+  .project-card-face {
+    padding: 24px;
   }
 
 
@@ -386,7 +926,7 @@ h2 span {
   }
 
 
-  .project-card h3 {
+  .project-card-front h3 {
     margin-bottom: 15px;
 
     font-size: 25px;
@@ -395,7 +935,7 @@ h2 span {
   }
 
 
-  .project-card > p {
+  .project-card-front > p {
     font-size: 14px;
 
     line-height: 1.7;
@@ -410,7 +950,8 @@ h2 span {
 
 
   .project-tags span {
-    padding: 6px 10px;
+    padding:
+      6px 10px;
 
     font-size: 10px;
   }
@@ -421,22 +962,91 @@ h2 span {
   }
 
 
-  .arrow {
-    width: 32px;
-    height: 32px;
+  .project-click-hint {
+    opacity: 1;
 
-    font-size: 15px;
+    color: #555555;
+  }
+
+
+  .project-card-back h3 {
+    font-size: 21px;
+  }
+
+
+  .project-detail p,
+  .project-detail li {
+    font-size: 11px;
   }
 
 }
 
 
-/* Very small phones */
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .projects-section {
+    padding-top: 65px;
+
+    padding-bottom: 65px;
+  }
+
+
+  .project-card-reveal,
+  .project-card {
+    min-height: 420px;
+  }
+
+
+  .project-card-face {
+    padding: 22px;
+  }
+
+
+  .project-card-front h3 {
+    font-size: 19px;
+  }
+
+
+  .project-card-front > p {
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+
+  .project-card .project-type {
+    font-size: 10px;
+  }
+
+
+  .project-tags {
+    gap: 6px;
+  }
+
+
+  .project-tags span {
+    font-size: 10px;
+
+    padding:
+      5px 8px;
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
 
 @media (max-width: 380px) {
 
   .projects-section {
     padding-left: 16px;
+
     padding-right: 16px;
   }
 
@@ -446,14 +1056,18 @@ h2 span {
   }
 
 
+  .project-card-reveal,
   .project-card {
     min-height: 370px;
+  }
 
+
+  .project-card-face {
     padding: 20px;
   }
 
 
-  .project-card h3 {
+  .project-card-front h3 {
     font-size: 23px;
   }
 

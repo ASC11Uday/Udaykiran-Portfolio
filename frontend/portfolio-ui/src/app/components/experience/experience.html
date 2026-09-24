@@ -1,10 +1,23 @@
-<section class="experience-section" id="experience">
+<section
+  class="experience-section"
+  id="experience"
+>
 
   <div class="section-container">
 
-    <div class="section-heading">
+    <!-- =========================================
+         SECTION HEADING
+    ========================================== -->
 
-      <p class="eyebrow">EXPERIENCE</p>
+    <div
+      class="section-heading"
+      appScrollReveal
+      style="--reveal-delay: 0ms"
+    >
+
+      <p class="eyebrow">
+        EXPERIENCE
+      </p>
 
       <h2>
         Building,
@@ -14,6 +27,10 @@
     </div>
 
 
+    <!-- =========================================
+         LOADING
+    ========================================== -->
+
     @if (isLoading()) {
 
       <div class="experience-list">
@@ -22,7 +39,9 @@
 
           <div class="experience-content">
 
-            <p>Loading experience...</p>
+            <p>
+              Loading experience...
+            </p>
 
           </div>
 
@@ -33,6 +52,10 @@
     }
 
 
+    <!-- =========================================
+         ERROR
+    ========================================== -->
+
     @else if (errorMessage()) {
 
       <div class="experience-list">
@@ -41,7 +64,9 @@
 
           <div class="experience-content">
 
-            <p>{{ errorMessage() }}</p>
+            <p>
+              {{ errorMessage() }}
+            </p>
 
             <button
               type="button"
@@ -59,6 +84,10 @@
     }
 
 
+    <!-- =========================================
+         EMPTY
+    ========================================== -->
+
     @else if (experiences().length === 0) {
 
       <div class="experience-list">
@@ -67,7 +96,9 @@
 
           <div class="experience-content">
 
-            <p>No experience information found.</p>
+            <p>
+              No experience information found.
+            </p>
 
           </div>
 
@@ -77,6 +108,10 @@
 
     }
 
+
+    <!-- =========================================
+         EXPERIENCE
+    ========================================== -->
 
     @else {
 
@@ -88,35 +123,73 @@
           let i = $index
         ) {
 
-          <article class="experience-item">
+          <article
+            class="experience-item"
+            appScrollReveal
+            [style.--reveal-delay]="
+              (150 + (i * 120)) + 'ms'
+            "
+            (mouseenter)="
+              onExperienceEnter(
+                $any($event.currentTarget)
+              )
+            "
+            (mouseleave)="
+              onExperienceLeave(
+                $any($event.currentTarget)
+              )
+            "
+          >
+
+            <!-- =====================================
+                 META
+            ====================================== -->
 
             <div class="experience-meta">
 
               <span class="experience-number">
+
                 {{ (i + 1).toString().padStart(2, '0') }}
+
               </span>
 
               <span class="experience-period">
+
                 {{ experience.period }}
+
               </span>
 
             </div>
 
 
+            <!-- =====================================
+                 CONTENT
+            ====================================== -->
+
             <div class="experience-content">
 
               <h3>
+
                 {{ experience.role }}
+
               </h3>
 
               <h4>
+
                 {{ experience.company }}
+
               </h4>
 
               <p>
+
                 {{ experience.description }}
+
               </p>
 
+
+              <!-- =================================
+                   TECHNOLOGIES
+              ================================== -->
 
               <div class="experience-tags">
 
@@ -126,7 +199,9 @@
                 ) {
 
                   <span>
+
                     {{ technology }}
+
                   </span>
 
                 }

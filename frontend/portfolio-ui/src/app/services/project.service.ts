@@ -13,6 +13,10 @@ export interface Project {
   technologies: string[];
   github: string;
   featured: boolean;
+
+  overview: string;
+  contribution: string;
+  highlights: string[];
 }
 
 @Injectable({
