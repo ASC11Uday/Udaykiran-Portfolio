@@ -77,7 +77,8 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=["http://localhost:4200","http://127.0.0.1:8080",
+    "http://localhost:8080"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -159,27 +160,28 @@ def seed_projects():
             models.Project(
                 title="Fake News Prediction",
                 description=(
-                    "A machine learning project designed to classify news "
-                    "content and identify potentially misleading information "
-                    "using Python-based ML techniques."
+                    "A Python-based machine learning project that analyzes "
+    "news content and classifies articles based on patterns "
+    "associated with misleading information."
                 ),
                                 overview=(
-                    "A machine learning application that analyzes "
-                    "news content and predicts whether an article "
-                    "is likely to be misleading."
+                    "A machine learning application that processes "
+    "news content, applies text preprocessing and NLP "
+    "techniques, and predicts whether an article is "
+    "likely to contain misleading information."
                 ),
 
                 contribution=(
-                    "Developed the machine learning workflow in Python, "
-                    "including data preparation, text processing, model "
-                    "training, and prediction."
+                     "Built the complete machine learning workflow in Python, "
+    "including data preparation, text preprocessing, NLP-based "
+    "feature processing, model training, and news classification."
                 ),
 
                 highlights=json.dumps([
                     "Text preprocessing and NLP",
-                    "Machine learning classification",
-                    "Training and prediction workflow",
-                    "Python-based implementation"
+    "News classification workflow",
+    "Model training and prediction",
+    "Python-based ML implementation"
                 ]),
                 type="AI / MACHINE LEARNING",
                 category="AI / ML",
@@ -193,108 +195,130 @@ def seed_projects():
             ),
 
             models.Project(
-                title="Tour Management System",
-                description=(
-                    "A full-stack web application for managing tour-related "
-                    "workflows with authentication, backend APIs, and "
-                    "relational data management."
-                ),
-                overview=(
-    "A full-stack web application for managing tour-related "
-    "workflows with user authentication, backend APIs, and "
-    "relational data management."
+    title="Tour Management System",
+
+    description=(
+        "A full-stack web application for managing tour-related "
+        "workflows with user authentication, REST APIs, and "
+        "relational data management."
+    ),
+
+    overview=(
+        "A full-stack web application designed to manage "
+        "tour-related workflows through an Angular frontend "
+        "and Spring Boot backend, with JWT authentication "
+        "and MySQL for persistent data management."
+    ),
+
+    contribution=(
+        "Built the full-stack application using Angular and Spring Boot, "
+    "implementing the frontend, REST APIs, JWT-based authentication, "
+    "and MySQL database integration."
+    ),
+
+    highlights=json.dumps([
+        "Angular frontend development",
+        "Spring Boot REST API integration",
+        "JWT-based authentication",
+        "MySQL database integration"
+    ]),
+
+    type="FULL STACK",
+    category="FULL STACK",
+
+    technologies=json.dumps([
+        "Angular",
+        "Spring Boot",
+        "MySQL",
+        "JWT"
+    ]),
+
+    github="#",
+    featured=False
 ),
 
-contribution=(
-    "Worked across the Angular frontend and Spring Boot backend, "
-    "integrating REST APIs, authentication, and MySQL persistence."
-),
-
-highlights=json.dumps([
-    "Angular frontend development",
-    "Spring Boot REST APIs",
-    "JWT authentication",
-    "MySQL database integration"
-]),
-                type="FULL STACK",
-                category="FULL STACK",
-                technologies=json.dumps([
-                    "Angular",
-                    "Spring Boot",
-                    "MySQL",
-                    "JWT"
-                ]),
-                github="#",
-                featured=False
-            ),
 
             models.Project(
-                title="Glaucoma Detection",
-                description=(
-                    "A computer vision project exploring automated glaucoma "
-                    "detection using deep learning and object detection "
-                    "techniques."
-                ),
-                overview=(
-    "A computer vision project that explores automated glaucoma "
-    "detection from medical images using deep learning techniques."
-),
+    title="Glaucoma Detection",
 
-contribution=(
-    "Worked on the image-processing and deep-learning workflow "
-    "for detecting glaucoma-related patterns using CNN and YOLOv8."
-),
+    description=(
+        "A computer vision project exploring automated "
+        "glaucoma detection from medical images using "
+        "deep learning techniques."
+    ),
 
-highlights=json.dumps([
-    "Medical image analysis",
-    "CNN-based deep learning",
-    "YOLOv8 object detection",
-    "Computer vision workflow"
-]),
-                type="COMPUTER VISION",
-                category="DEEP LEARNING",
-                technologies=json.dumps([
-                    "Python",
-                    "CNN",
-                    "YOLOv8",
-                    "Computer Vision"
-                ]),
-                github="#",
-                featured=False
-            ),
+    overview=(
+        "A computer vision project that explores automated "
+        "glaucoma detection from medical images using "
+        "CNN-based deep learning and YOLOv8."
+    ),
+
+    contribution=(
+        "Built a computer vision workflow for glaucoma detection "
+    "using medical image processing, CNN-based deep learning, "
+    "and YOLOv8 object detection."
+
+    ),
+
+    highlights=json.dumps([
+        "Medical image analysis",
+        "CNN-based deep learning",
+        "YOLOv8 object detection",
+        "Computer vision workflow"
+    ]),
+
+    type="COMPUTER VISION",
+    category="DEEP LEARNING",
+
+    technologies=json.dumps([
+        "Python",
+        "CNN",
+        "YOLOv8",
+        "Computer Vision"
+    ]),
+
+    github="#",
+    featured=False
+),
 
             models.Project(
-                title="Music Player",
-                description=(
-                    "A Python-based music player application developed to "
-                    "explore desktop application development and media "
-                    "handling."
-                ),
-                overview=(
-    "A Python-based music player application created to explore "
-    "desktop application development and media handling."
-),
+    title="Music Player",
 
-contribution=(
-    "Developed the core Python application flow for playing and "
-    "managing audio files."
-),
+    description=(
+        "A Python-based desktop music player developed "
+        "to explore application development and audio "
+        "file handling."
+    ),
 
-highlights=json.dumps([
-    "Python application development",
-    "Audio playback",
-    "Desktop application workflow",
-    "Media file handling"
-]),
-                type="PYTHON",
-                category="PYTHON",
-                technologies=json.dumps([
-                    "Python",
-                    "Desktop Application"
-                ]),
-                github="#",
-                featured=False
-            )
+    overview=(
+        "A Python-based desktop application focused on "
+        "playing and managing local audio files while "
+        "exploring desktop application development."
+    ),
+
+    contribution=(
+        "Built a Python-based desktop music player for loading, "
+    "playing, and managing local audio files."
+    ),
+
+    highlights=json.dumps([
+        "Python application development",
+        "Audio playback",
+        "Desktop application workflow",
+        "Local media file handling"
+    ]),
+
+    type="PYTHON",
+    category="PYTHON",
+
+    technologies=json.dumps([
+        "Python",
+        "Desktop Application"
+    ]),
+
+    github="#",
+    featured=False
+)
 
         ]
 
@@ -310,81 +334,103 @@ def update_project_details():
     try:
         project_details = {
 
-            "Fake News Prediction": {
-                "overview": (
-                    "A machine learning application that analyzes "
-                    "news content and predicts whether an article "
-                    "is likely to be misleading."
-                ),
-                "contribution": (
-                    "Developed the machine learning workflow in Python, "
-                    "including data preparation, text processing, model "
-                    "training, and prediction."
-                ),
-                "highlights": [
-                    "Text preprocessing and NLP",
-                    "Machine learning classification",
-                    "Training and prediction workflow",
-                    "Python-based implementation"
-                ]
-            },
+    "Fake News Prediction": {
+        "description": (
+            "A Python-based machine learning project that analyzes "
+            "news content and classifies articles based on patterns "
+            "associated with misleading information."
+        ),
+        "overview": (
+            "A machine learning application that processes "
+            "news content, applies text preprocessing and NLP "
+            "techniques, and predicts whether an article is "
+            "likely to contain misleading information."
+        ),
+        "contribution": (
+    "Built the complete machine learning workflow in Python, "
+    "including data preparation, text preprocessing, NLP-based "
+    "feature processing, model training, and news classification."
+),
+        "highlights": [
+            "Text preprocessing and NLP",
+            "News classification workflow",
+            "Model training and prediction",
+            "Python-based ML implementation"
+        ]
+    },
 
-            "Tour Management System": {
-                "overview": (
-                    "A full-stack web application for managing "
-                    "tour-related workflows with user authentication, "
-                    "backend APIs, and relational data management."
-                ),
-                "contribution": (
-                    "Worked across the Angular frontend and Spring Boot "
-                    "backend, integrating REST APIs, authentication, "
-                    "and MySQL persistence."
-                ),
-                "highlights": [
-                    "Angular frontend development",
-                    "Spring Boot REST APIs",
-                    "JWT authentication",
-                    "MySQL database integration"
-                ]
-            },
+    "Tour Management System": {
+        "description": (
+            "A full-stack web application for managing tour-related "
+            "workflows with user authentication, REST APIs, and "
+            "relational data management."
+        ),
+        "overview": (
+            "A full-stack web application designed to manage "
+            "tour-related workflows through an Angular frontend "
+            "and Spring Boot backend, with JWT authentication "
+            "and MySQL for persistent data management."
+        ),
+        "contribution": (
+    "Built the full-stack application using Angular and Spring Boot, "
+    "implementing the frontend, REST APIs, JWT-based authentication, "
+    "and MySQL database integration."
+),
+        "highlights": [
+            "Angular frontend development",
+            "Spring Boot REST API integration",
+            "JWT-based authentication",
+            "MySQL database integration"
+        ]
+    },
 
-            "Glaucoma Detection": {
-                "overview": (
-                    "A computer vision project that explores automated "
-                    "glaucoma detection from medical images using "
-                    "deep learning techniques."
-                ),
-                "contribution": (
-                    "Worked on the image-processing and deep-learning "
-                    "workflow for detecting glaucoma-related patterns "
-                    "using CNN and YOLOv8."
-                ),
-                "highlights": [
-                    "Medical image analysis",
-                    "CNN-based deep learning",
-                    "YOLOv8 object detection",
-                    "Computer vision workflow"
-                ]
-            },
+    "Glaucoma Detection": {
+        "description": (
+            "A computer vision project exploring automated "
+            "glaucoma detection from medical images using "
+            "deep learning techniques."
+        ),
+        "overview": (
+            "A computer vision project that explores automated "
+            "glaucoma detection from medical images using "
+            "CNN-based deep learning and YOLOv8."
+        ),
+        "contribution": (
+    "Built a computer vision workflow for glaucoma detection "
+    "using medical image processing, CNN-based deep learning, "
+    "and YOLOv8 object detection."
+),
+        "highlights": [
+            "Medical image analysis",
+            "CNN-based deep learning",
+            "YOLOv8 object detection",
+            "Computer vision workflow"
+        ]
+    },
 
-            "Music Player": {
-                "overview": (
-                    "A Python-based music player application created "
-                    "to explore desktop application development "
-                    "and media handling."
-                ),
-                "contribution": (
-                    "Developed the core Python application flow for "
-                    "playing and managing audio files."
-                ),
-                "highlights": [
-                    "Python application development",
-                    "Audio playback",
-                    "Desktop application workflow",
-                    "Media file handling"
-                ]
-            }
-        }
+    "Music Player": {
+        "description": (
+            "A Python-based desktop music player developed "
+            "to explore application development and audio "
+            "file handling."
+        ),
+        "overview": (
+            "A Python-based desktop application focused on "
+            "playing and managing local audio files while "
+            "exploring desktop application development."
+        ),
+        "contribution": (
+    "Built a Python-based desktop music player for loading, "
+    "playing, and managing local audio files."
+),
+        "highlights": [
+            "Python application development",
+            "Audio playback",
+            "Desktop application workflow",
+            "Local media file handling"
+        ]
+    }
+}
 
         for title, details in project_details.items():
 
@@ -395,6 +441,7 @@ def update_project_details():
             )
 
             if project:
+                project.description = details["description"]
                 project.overview = details["overview"]
                 project.contribution = details["contribution"]
                 project.highlights = json.dumps(
@@ -423,30 +470,31 @@ def seed_experiences():
                 company="Ascendion Engineering Pvt. Ltd.",
                 period="2024 — Present",
                 description=(
-                    "Working on full-stack development, automation testing, "
-                    "and intelligent automation workflows. Contributing to "
-                    "Angular and backend development while working with "
-                    "PyTest, Selenium, and AI-driven testing workflows."
-                ),
+    "Working across full-stack development, test automation, "
+    "and AI-driven engineering workflows. Contributing to "
+    "Angular and backend development while building and "
+    "validating automated testing workflows using PyTest "
+    "and Selenium."
+),
                 technologies=json.dumps([
                     "Angular",
                     "Spring Boot",
                     "Python",
                     "PyTest",
                     "Selenium",
-                    "AI"
+                    "AI / Agentic Workflows"
                 ])
             ),
 
             models.Experience(
                 role="Machine Learning Intern",
                 company="YBI Foundation",
-                period="2022",
+                period="Jun 2022 — Aug 2022",
                 description=(
-                    "Worked on machine learning concepts and projects, "
-                    "gaining practical exposure to Python, data analysis, "
-                    "and machine learning workflows."
-                ),
+    "Worked on machine learning projects and concepts, "
+    "gaining practical experience with Python, data analysis, "
+    "and machine learning workflows."
+),
                 technologies=json.dumps([
                     "Python",
                     "Machine Learning",
@@ -463,6 +511,66 @@ def seed_experiences():
     finally:
         db.close()
 
+def update_experience_details():    
+    db = SessionLocal()
+
+    try:
+        experience_details = {
+            "Senior Associate Engineer": {
+                "description": (
+                    "Working across full-stack development, test automation, "
+                    "and AI-driven engineering workflows. Contributing to "
+                    "Angular and backend development while building and "
+                    "validating automated testing workflows using PyTest "
+                    "and Selenium."
+                ),
+                "period": "2024 — Present",
+                "technologies": [
+                    "Angular",
+                    "Spring Boot",
+                    "Python",
+                    "PyTest",
+                    "Selenium",
+                    "AI / Agentic Workflows"
+                ]
+            },
+            "Machine Learning Intern": {
+                "description": (
+                    "Worked on machine learning projects and concepts, "
+                    "gaining practical experience with Python, data analysis, "
+                    "and machine learning workflows."
+                ),
+                "period": "Jun 2022 — Aug 2022",
+                "technologies": [
+                    "Python",
+                    "Machine Learning",
+                    "Data Analysis"
+                ]
+            }
+        }
+
+        for role, details in experience_details.items():
+
+            experience = (
+                db.query(models.Experience)
+                .filter(models.Experience.role == role)
+                .first()
+            )
+
+            if experience:
+                experience.description = details["description"]
+                experience.period = details["period"]
+                experience.technologies = json.dumps(
+                    details["technologies"]
+                )
+
+        db.commit()
+
+    finally:
+        db.close()   
+
+     
+
 
 def seed_skill_groups():
     db = SessionLocal()
@@ -478,9 +586,10 @@ def seed_skill_groups():
             models.SkillGroup(
                 title="Development",
                 description=(
-                    "Building responsive web applications and backend "
-                    "services using modern development frameworks."
-                ),
+    "Building web applications and backend services "
+    "using Angular, Spring Boot, Python, and SQL-based "
+    "data technologies."
+),
                 skills=json.dumps([
                     "Angular",
                     "TypeScript",
@@ -498,10 +607,10 @@ def seed_skill_groups():
             models.SkillGroup(
                 title="Automation & Testing",
                 description=(
-                    "Designing automated test workflows for web and "
-                    "Windows applications with a focus on reliability "
-                    "and maintainability."
-                ),
+    "Designing and validating automated test workflows "
+    "for web and Windows applications using PyTest, "
+    "Selenium, and testing tools."
+),
                 skills=json.dumps([
                     "PyTest",
                     "Selenium",
@@ -518,10 +627,10 @@ def seed_skill_groups():
             models.SkillGroup(
                 title="AI & Intelligent Automation",
                 description=(
-                    "Exploring machine learning, computer vision and "
-                    "agent-based workflows for intelligent software "
-                    "automation."
-                ),
+    "Exploring machine learning, computer vision, "
+    "generative AI, and agentic workflows for "
+    "intelligent software automation."
+),
                 skills=json.dumps([
                     "Machine Learning",
                     "Computer Vision",
@@ -537,9 +646,9 @@ def seed_skill_groups():
             models.SkillGroup(
                 title="Tools & Workflow",
                 description=(
-                    "Development and collaboration tools used across "
-                    "software engineering and testing workflows."
-                ),
+    "Tools used across development, testing, version control, "
+    "API validation, and engineering collaboration workflows."
+),
                 skills=json.dumps([
                     "Git",
                     "GitHub",
@@ -560,10 +669,55 @@ def seed_skill_groups():
     finally:
         db.close()
 
+def update_skill_group_details():
+    db = SessionLocal()
+
+    try:
+        skill_details = {
+            "Development": (
+                "Building web applications and backend services "
+                "using Angular, Spring Boot, Python, and SQL-based "
+                "data technologies."
+            ),
+            "Automation & Testing": (
+                "Designing and validating automated test workflows "
+                "for web and Windows applications using PyTest, "
+                "Selenium, and testing tools."
+            ),
+            "AI & Intelligent Automation": (
+                "Exploring machine learning, computer vision, "
+                "generative AI, and agentic workflows for "
+                "intelligent software automation."
+            ),
+            "Tools & Workflow": (
+                "Tools used across development, testing, version control, "
+                "API validation, and engineering collaboration workflows."
+            )
+        }
+
+        for title, description in skill_details.items():
+
+            skill_group = (
+                db.query(models.SkillGroup)
+                .filter(models.SkillGroup.title == title)
+                .first()
+            )
+
+            if skill_group:
+                skill_group.description = description
+
+        db.commit()
+
+    finally:
+        db.close()
+
+
 # Create the initial project records
 seed_projects()
 seed_experiences()
+update_experience_details()
 seed_skill_groups()
+update_skill_group_details()
 
 
 

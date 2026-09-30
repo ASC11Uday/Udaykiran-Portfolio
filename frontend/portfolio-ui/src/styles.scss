@@ -8,10 +8,6 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  box-sizing: border-box;
-}
-
 *,
 *::before,
 *::after {
@@ -23,7 +19,19 @@ app-root {
   width: 100%;
   min-height: 100vh;
 }
+
+::selection {
+  background: rgba(114, 189, 125, 0.22);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 1px solid rgba(114, 189, 125, 0.65);
+  outline-offset: 4px;
+}
+
 @media (pointer: fine) {
+
   html,
   body,
   a,
@@ -34,6 +42,7 @@ app-root {
     cursor: none;
   }
 }
+
 /* =========================================
    SCROLL REVEAL
 ========================================= */
@@ -107,11 +116,9 @@ select {
   }
 
   .section-heading h2 {
-    font-size: clamp(
-      30px,
-      8vw,
-      42px
-    );
+    font-size: clamp(30px,
+        7vw,
+        42px);
 
     line-height: 1.1;
   }

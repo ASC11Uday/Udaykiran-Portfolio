@@ -1,7 +1,4 @@
-<section
-  class="experience-section"
-  id="experience"
->
+<section class="experience-section" id="experience">
 
   <div class="section-container">
 
@@ -9,19 +6,15 @@
          SECTION HEADING
     ========================================== -->
 
-    <div
-      class="section-heading"
-      appScrollReveal
-      style="--reveal-delay: 0ms"
-    >
+    <div class="section-heading" appScrollReveal style="--reveal-delay: 0ms">
 
       <p class="eyebrow">
         EXPERIENCE
       </p>
 
       <h2>
-        Building,
-        <span>testing & automating.</span>
+        Engineering through
+        <span>development, testing & automation.</span>
       </h2>
 
     </div>
@@ -33,21 +26,21 @@
 
     @if (isLoading()) {
 
-      <div class="experience-list">
+    <div class="experience-list">
 
-        <div class="experience-item">
+      <div class="experience-item">
 
-          <div class="experience-content">
+        <div class="experience-content">
 
-            <p>
-              Loading experience...
-            </p>
-
-          </div>
+          <p>
+            Loading experience...
+          </p>
 
         </div>
 
       </div>
+
+    </div>
 
     }
 
@@ -58,28 +51,25 @@
 
     @else if (errorMessage()) {
 
-      <div class="experience-list">
+    <div class="experience-list">
 
-        <div class="experience-item">
+      <div class="experience-item">
 
-          <div class="experience-content">
+        <div class="experience-content">
 
-            <p>
-              {{ errorMessage() }}
-            </p>
+          <p>
+            {{ errorMessage() }}
+          </p>
 
-            <button
-              type="button"
-              (click)="loadExperiences()"
-            >
-              Try Again
-            </button>
-
-          </div>
+          <button type="button" (click)="loadExperiences()">
+            Try Again
+          </button>
 
         </div>
 
       </div>
+
+    </div>
 
     }
 
@@ -90,21 +80,21 @@
 
     @else if (experiences().length === 0) {
 
-      <div class="experience-list">
+    <div class="experience-list">
 
-        <div class="experience-item">
+      <div class="experience-item">
 
-          <div class="experience-content">
+        <div class="experience-content">
 
-            <p>
-              No experience information found.
-            </p>
-
-          </div>
+          <p>
+            No experience information found.
+          </p>
 
         </div>
 
       </div>
+
+    </div>
 
     }
 
@@ -115,106 +105,100 @@
 
     @else {
 
-      <div class="experience-list">
+    <div class="experience-list">
 
-        @for (
-          experience of experiences();
-          track experience.id;
-          let i = $index
-        ) {
+      @for (
+      experience of experiences();
+      track experience.id;
+      let i = $index
+      ) {
 
-          <article
-            class="experience-item"
-            appScrollReveal
-            [style.--reveal-delay]="
+      <article class="experience-item" appScrollReveal [style.--reveal-delay]="
               (150 + (i * 120)) + 'ms'
-            "
-            (mouseenter)="
+            " (mouseenter)="
               onExperienceEnter(
                 $any($event.currentTarget)
               )
-            "
-            (mouseleave)="
+            " (mouseleave)="
               onExperienceLeave(
                 $any($event.currentTarget)
               )
-            "
-          >
+            ">
 
-            <!-- =====================================
+        <!-- =====================================
                  META
             ====================================== -->
 
-            <div class="experience-meta">
+        <div class="experience-meta">
 
-              <span class="experience-number">
+          <span class="experience-number">
 
-                {{ (i + 1).toString().padStart(2, '0') }}
+            {{ (i + 1).toString().padStart(2, '0') }}
 
-              </span>
+          </span>
 
-              <span class="experience-period">
+          <span class="experience-period">
 
-                {{ experience.period }}
+            {{ experience.period }}
 
-              </span>
+          </span>
 
-            </div>
+        </div>
 
 
-            <!-- =====================================
+        <!-- =====================================
                  CONTENT
             ====================================== -->
 
-            <div class="experience-content">
+        <div class="experience-content">
 
-              <h3>
+          <h3>
 
-                {{ experience.role }}
+            {{ experience.role }}
 
-              </h3>
+          </h3>
 
-              <h4>
+          <h4>
 
-                {{ experience.company }}
+            {{ experience.company }}
 
-              </h4>
+          </h4>
 
-              <p>
+          <p>
 
-                {{ experience.description }}
+            {{ experience.description }}
 
-              </p>
+          </p>
 
 
-              <!-- =================================
+          <!-- =================================
                    TECHNOLOGIES
               ================================== -->
 
-              <div class="experience-tags">
+          <div class="experience-tags">
 
-                @for (
-                  technology of experience.technologies;
-                  track technology
-                ) {
+            @for (
+            technology of experience.technologies;
+            track technology
+            ) {
 
-                  <span>
+            <span>
 
-                    {{ technology }}
+              {{ technology }}
 
-                  </span>
+            </span>
 
-                }
+            }
 
-              </div>
+          </div>
 
-            </div>
+        </div>
 
-          </article>
+      </article>
 
-        }
+      }
 
-      </div>
+    </div>
 
     }
 

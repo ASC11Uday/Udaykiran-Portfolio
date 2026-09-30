@@ -125,6 +125,7 @@ h2 span {
   overflow: visible;
 
   transform-style: preserve-3d;
+  
 
   transition:
     transform 0.7s cubic-bezier(
@@ -260,7 +261,7 @@ h2 span {
 
   -webkit-backface-visibility: hidden;
 
-  transform-style: preserve-3d;
+  
 
   /*
    * Clipping is safe on the individual
@@ -833,7 +834,7 @@ h2 span {
 
   .project-card-reveal,
   .project-card {
-    min-height: 400px;
+    min-height: 470px;
   }
 
 
@@ -1058,7 +1059,7 @@ h2 span {
 
   .project-card-reveal,
   .project-card {
-    min-height: 370px;
+    min-height: 400px;
   }
 
 
@@ -1071,4 +1072,10 @@ h2 span {
     font-size: 23px;
   }
 
+}
+@media (max-width: 340px) {
+  .project-card-reveal,
+  .project-card {
+    min-height: 500px;
+  }
 }

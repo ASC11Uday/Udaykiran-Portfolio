@@ -79,7 +79,26 @@
 
   opacity: 0.35;
 }
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
+  background:
+    radial-gradient(
+      circle,
+      rgba(114, 189, 125, 0.055) 0%,
+      rgba(114, 189, 125, 0.018) 35%,
+      transparent 70%
+    );
+
+  pointer-events: none;
+  z-index: 0;
+}
 
 /* ========================================= */
 /* CONTAINER                                 */
@@ -204,6 +223,8 @@
   letter-spacing: -3px;
 
   font-weight: 700;
+  letter-spacing: -0.8px;
+line-height: 1.05;
 }
 
 
@@ -294,6 +315,8 @@
     0.35s
     ease-out
     both;
+  line-height: 1.7;
+letter-spacing: 0.2px;
 }
 
 
@@ -423,8 +446,10 @@
   background: #ffffff;
 
   box-shadow:
-    0 8px 25px
-    rgba(255, 255, 255, 0.08);
+  0 8px 25px
+  rgba(255, 255, 255, 0.08),
+  0 0 18px
+  rgba(114, 189, 125, 0.08);
 }
 
 
@@ -540,21 +565,17 @@
     color 0.2s ease,
     border-color 0.2s ease,
     background 0.2s ease;
+    cursor: none;
+    position: relative; 
 }
 
 
 .hero-tech span:hover {
 
-  transform:
-    translateY(-3px);
-
-  border-color:
-    rgba(95, 189, 109, 0.35);
-
-  background:
-    rgba(95, 189, 109, 0.025);
-
-  color: #72bd7d;
+ color: #72bd7d;
+border-color: rgba(114, 189, 125, 0.25);
+background: rgba(114, 189, 125, 0.04);
+transform: translateY(-2px);
 }
 
 

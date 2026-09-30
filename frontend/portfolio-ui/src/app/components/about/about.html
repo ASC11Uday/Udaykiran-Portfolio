@@ -1,7 +1,4 @@
-<section
-  class="about-section"
-  id="about"
->
+<section class="about-section" id="about">
 
   <div class="section-container">
 
@@ -9,11 +6,7 @@
          SECTION HEADING
     ========================================== -->
 
-    <div
-      class="section-heading"
-      appScrollReveal
-      style="--reveal-delay: 0ms"
-    >
+    <div class="section-heading" appScrollReveal style="--reveal-delay: 0ms">
 
       <p class="eyebrow">
         ABOUT ME
@@ -21,17 +14,17 @@
 
       @if (isLoading()) {
 
-        <h2>
-          Engineering solutions across
-          <span>software, automation & AI.</span>
-        </h2>
+      <h2>
+  Building software across
+  <span>development, automation & AI.</span>
+</h2>
 
       } @else if (about()) {
 
-        <h2>
-          Engineering solutions across
-          <span>software, automation & AI.</span>
-        </h2>
+      <h2>
+  Building software across
+  <span>development, automation & AI.</span>
+</h2>
 
       }
 
@@ -44,17 +37,17 @@
 
     @if (isLoading()) {
 
-      <div class="about-grid">
+    <div class="about-grid">
 
-        <div class="about-text">
+      <div class="about-text">
 
-          <p>
-            Loading about information...
-          </p>
-
-        </div>
+        <p>
+          Loading about information...
+        </p>
 
       </div>
+
+    </div>
 
     }
 
@@ -65,24 +58,21 @@
 
     @else if (errorMessage()) {
 
-      <div class="about-grid">
+    <div class="about-grid">
 
-        <div class="about-text">
+      <div class="about-text">
 
-          <p>
-            {{ errorMessage() }}
-          </p>
+        <p>
+          {{ errorMessage() }}
+        </p>
 
-          <button
-            type="button"
-            (click)="loadAbout()"
-          >
-            Try Again
-          </button>
-
-        </div>
+        <button type="button" (click)="loadAbout()">
+          Try Again
+        </button>
 
       </div>
+
+    </div>
 
     }
 
@@ -93,136 +83,97 @@
 
     @else if (about()) {
 
-      <div class="about-grid">
+    <div class="about-grid">
 
 
-        <!-- =====================================
+      <!-- =====================================
              ABOUT TEXT
         ====================================== -->
 
-        <div
-          class="about-text"
-          appScrollReveal
-          style="--reveal-delay: 120ms"
-        >
+      <div class="about-text" appScrollReveal style="--reveal-delay: 120ms">
 
-          <p>
-            I'm {{ about()!.name }}, a
-            {{ about()!.role }} focused on
-            building full-stack applications,
-            automation solutions, and AI-driven
-            workflows.
-          </p>
+        <p>
+          I'm {{ about()!.name }}, a
+          {{ about()!.role }} working across
+          full-stack development, test automation,
+          and AI-driven engineering workflows.
+        </p>
 
-          <p>
-            My development experience spans
-            {{ about()!.skills.join(', ') }}.
-          </p>
+        <p>
+          My experience includes building applications
+          with Angular, Spring Boot, Python, FastAPI,
+          and SQL, along with automating software
+          validation using tools such as Selenium and
+          PyTest.
+        </p>
 
-          <p>
-            I'm also exploring agentic AI systems
-            and intelligent automation workflows
-            that can improve how software is
-            tested, validated, and maintained.
-          </p>
+        <p>
+          I'm currently expanding my work in agentic AI,
+          exploring how intelligent workflows can
+          automate repetitive engineering tasks and
+          improve the way software is tested, validated,
+          and maintained.
+        </p>
 
-        </div>
+      </div>
 
 
-        <!-- =====================================
+      <!-- =====================================
              HIGHLIGHTS
         ====================================== -->
 
-        <div class="about-highlights">
+      <div class="about-highlights">
 
 
-          <!-- Full Stack -->
+        <!-- Full Stack -->
 
-          <div
-            class="highlight-card"
-            appScrollReveal
-            style="--reveal-delay: 180ms"
-          >
+        <div class="highlight-card" appScrollReveal style="--reveal-delay: 180ms">
 
-            <span class="highlight-number">
-              01
-            </span>
+          <span class="highlight-number">
+            01
+          </span>
 
-            <div>
+          <div>
 
-              <h3>
-                Full Stack
-              </h3>
-
-              <p>
-                Angular, TypeScript, Spring Boot
-                and MySQL.
-              </p>
-
-            </div>
+            <h3>Full Stack Development</h3>
+            <p>Building web applications with Angular, Spring Boot, REST APIs and SQL.</p>
 
           </div>
-
-
-          <!-- Automation -->
-
-          <div
-            class="highlight-card"
-            appScrollReveal
-            style="--reveal-delay: 260ms"
-          >
-
-            <span class="highlight-number">
-              02
-            </span>
-
-            <div>
-
-              <h3>
-                Automation
-              </h3>
-
-              <p>
-                Selenium, PyTest and Windows
-                application automation.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <!-- AI -->
-
-          <div
-            class="highlight-card"
-            appScrollReveal
-            style="--reveal-delay: 340ms"
-          >
-
-            <span class="highlight-number">
-              03
-            </span>
-
-            <div>
-
-              <h3>
-                AI & Agentic Workflows
-              </h3>
-
-              <p>
-                AI/ML projects and intelligent
-                automation workflows.
-              </p>
-
-            </div>
-
-          </div>
-
 
         </div>
 
+
+        <!-- Automation -->
+
+        <div class="highlight-card" appScrollReveal style="--reveal-delay: 260ms">
+          <span class="highlight-number">02</span>
+          <div>
+            <h3>Test Automation</h3>
+            <p>
+              Automating software validation with PyTest,
+              Selenium and Windows application testing.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- AI -->
+
+        <div class="highlight-card" appScrollReveal style="--reveal-delay: 340ms">
+          <span class="highlight-number">03</span>
+          <div>
+            <h3>AI & Agentic Workflows</h3>
+            <p>
+              Exploring AI/ML solutions and agentic workflows
+              for intelligent software automation.
+            </p>
+          </div>
+        </div>
+
+
       </div>
+
+    </div>
 
     }
 

@@ -13,8 +13,8 @@
       </p>
 
       <h2>
-        Tools I use to
-        <span>build and automate.</span>
+        Technologies I use to
+        <span>build, test & automate.</span>
       </h2>
 
     </div>
@@ -129,91 +129,81 @@
       let i = $index
       ) {
 
-       <article
-            class="skill-group"
-            appScrollReveal
-            [style.--reveal-delay]="
+      <article class="skill-group" appScrollReveal [style.--reveal-delay]="
               (150 + (i * 120)) + 'ms'
-            "
-
-            (mouseenter)="
+            " (mouseenter)="
               onSkillGroupEnter(
                 $any($event.currentTarget)
               )
-            "
-
-            (mousemove)="
+            " (mousemove)="
               onSkillGroupMove(
                 $event,
                 $any($event.currentTarget)
               )
-            "
-
-            (mouseleave)="
+            " (mouseleave)="
               onSkillGroupLeave(
                 $any($event.currentTarget)
               )
-            "
-          >
+            ">
 
-            <!-- =================================
+        <!-- =================================
                  HEADER
             ================================== -->
 
-            <div class=" skill-header">
+        <div class=" skill-header">
 
-        <span class="skill-number">
+          <span class="skill-number">
 
-          {{
-          (i + 1)
-          .toString()
-          .padStart(2, '0')
-          }}
+            {{
+            (i + 1)
+            .toString()
+            .padStart(2, '0')
+            }}
 
-        </span>
+          </span>
 
-        <h3>
-          {{ group.title }}
-        </h3>
+          <h3>
+            {{ group.title }}
+          </h3>
 
-    </div>
+        </div>
 
 
-    <!-- =================================
+        <!-- =================================
                  DESCRIPTION
             ================================== -->
 
-    <p>
-      {{ group.description }}
-    </p>
+        <p>
+          {{ group.description }}
+        </p>
 
 
-    <!-- =================================
+        <!-- =================================
                  SKILLS
             ================================== -->
 
-    <div class="skill-list">
+        <div class="skill-list">
 
-      @for (
-      skill of group.skills;
-      track skill
-      ) {
+          @for (
+          skill of group.skills;
+          track skill
+          ) {
 
-      <span>
-        {{ skill }}
-      </span>
+          <span>
+            {{ skill }}
+          </span>
+
+          }
+
+        </div>
+
+      </article>
 
       }
 
     </div>
 
-    </article>
-
     }
-
-  </div>
-
-  }
 
   </div>
 
