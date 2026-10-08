@@ -78,7 +78,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:4200","http://127.0.0.1:8080",
-    "http://localhost:8080"],
+    "http://localhost:8080","https://udaykiran-portfolio-nine.vercel.app",],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
