@@ -684,8 +684,6 @@ Possible future enhancements:
 
 **Udaykiran Pallanti**
 
-Senior Associate Engineer
-
 ### Profiles
 
 -   LinkedIn: https://www.linkedin.com/in/udaykiran-pallanti/
